@@ -1,0 +1,3 @@
+/home/shad0w/Desktop/Faculdade/2º ano/2º semestre/DA/DA Project 1/cmake-build-debug/CMakeFiles/DA_Project_1.dir
+/home/shad0w/Desktop/Faculdade/2º ano/2º semestre/DA/DA Project 1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/shad0w/Desktop/Faculdade/2º ano/2º semestre/DA/DA Project 1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
