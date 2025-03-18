@@ -4,4 +4,9 @@ project(DA_Project_1)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(DA_Project_1 main.cpp
-        Graph.h)
+        data_structures/Graph.h
+        Dijkstra.cpp
+        data_structures/MutablePriorityQueue.h
+        data_handler/data_handler.cpp
+        data_handler/data_handler.h
+)

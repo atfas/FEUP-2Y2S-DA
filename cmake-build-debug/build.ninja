@@ -55,6 +55,18 @@ build CMakeFiles/DA_Project_1.dir/main.cpp.o: CXX_COMPILER__DA_Project_1_unscann
   OBJECT_DIR = CMakeFiles/DA_Project_1.dir
   OBJECT_FILE_DIR = CMakeFiles/DA_Project_1.dir
 
+build CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.o: CXX_COMPILER__DA_Project_1_unscanned_Debug /home/shad0w/Desktop/Faculdade/2º$ ano/2º$ semestre/DA/DA$ Project$ 1/Dijkstra.cpp || cmake_object_order_depends_target_DA_Project_1
+  DEP_FILE = CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/DA_Project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles/DA_Project_1.dir
+
+build CMakeFiles/DA_Project_1.dir/data_handler/data_handler.cpp.o: CXX_COMPILER__DA_Project_1_unscanned_Debug /home/shad0w/Desktop/Faculdade/2º$ ano/2º$ semestre/DA/DA$ Project$ 1/data_handler/data_handler.cpp || cmake_object_order_depends_target_DA_Project_1
+  DEP_FILE = CMakeFiles/DA_Project_1.dir/data_handler/data_handler.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/DA_Project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles/DA_Project_1.dir/data_handler
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target DA_Project_1
@@ -63,7 +75,7 @@ build CMakeFiles/DA_Project_1.dir/main.cpp.o: CXX_COMPILER__DA_Project_1_unscann
 #############################################
 # Link the executable DA_Project_1
 
-build DA_Project_1: CXX_EXECUTABLE_LINKER__DA_Project_1_Debug CMakeFiles/DA_Project_1.dir/main.cpp.o
+build DA_Project_1: CXX_EXECUTABLE_LINKER__DA_Project_1_Debug CMakeFiles/DA_Project_1.dir/main.cpp.o CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.o CMakeFiles/DA_Project_1.dir/data_handler/data_handler.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/DA_Project_1.dir
   POST_BUILD = :
