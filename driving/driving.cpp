@@ -7,6 +7,29 @@
 
 extern Graph<int> graph;
 
+std::vector<std::pair<std::string, std::string>> parseAvoidSegments(std::string avoidSegmentsInput) {
+    std::vector<std::pair<std::string, std::string>> avoidSegments;
+    std::vector<std::pair<std::string, std::string>> segments;
+
+    std::stringstream ssSegments(avoidSegmentsInput);
+    std::string segment;
+
+    int i = 0;
+    while (std::getline(ssSegments, segment, ')')) {
+        if (segment.empty()) continue;
+
+        std::stringstream segStream(segment.substr(1)); // Remove the '('
+        std::string first, second;
+
+        std::getline(segStream, first, ',');  // Extract first value
+        std::getline(segStream, second, ','); // Extract second value
+        if (i > 0) first = first.substr(1, first.size() - 1);
+        avoidSegments.emplace_back(first, second);
+        i++;
+    }
+    return avoidSegments;
+}
+
 void printPath(vector<int> &path) {
     if (path.empty()) {
         std::cout<< "none" << std::endl;
@@ -40,8 +63,10 @@ void independentDriving() {
     printPath(routePath);
 
     vector<int> avoidNodes;
-    for (size_t i = 1; i < routePath.size() -1; i++) {
-        avoidNodes.push_back(routePath[i]);
+    if (!routePath.empty()) {
+        for (size_t i = 1; i < routePath.size() -1; i++) {
+            avoidNodes.push_back(routePath[i]);
+        }
     }
 
     independentDijkstra(&graph, std::stoi(source), avoidNodes);
@@ -74,29 +99,9 @@ void restrictedDriving() {
         avoidNodes.push_back(node);
     }
 
-    // Parsing avoid segments
     std::cout << "AvoidSegments ((id,id) format, comma-separated): ";
     std::getline(std::cin, avoidSegmentsInput);
+    avoidSegments = parseAvoidSegments(avoidSegmentsInput);
 
-    std::vector<std::pair<std::string, std::string>> segments;
-
-    std::stringstream ssSegments(avoidSegmentsInput);
-    std::string segment;
-
-    while (std::getline(ssSegments, segment, ')')) {
-        if (segment.empty()) continue; // Skip empty segments
-
-        std::stringstream segStream(segment.substr(1)); // Remove the '('
-        std::string first, second;
-
-        std::getline(segStream, first, ',');  // Extract first value
-        std::getline(segStream, second, ','); // Extract second value
-
-        avoidSegments.emplace_back(first, second);
-    }
-
-    std::cout << "Parsed Avoid Segments: ";
-    for (const auto& seg : avoidSegments) {
-        std::cout << "(" << seg.first << "," << seg.second << ") ";
-    }
 }
+
