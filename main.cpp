@@ -7,6 +7,7 @@
 #include "data_structures/Graph.h"
 #include "data_handler/data_handler.h"
 
+Graph<int> graph;
 
 void createGraph(Graph<int> &myGraph) {
     std::vector<int> parking = {2, 3, 7, 6};
@@ -35,8 +36,7 @@ void createGraph(Graph<int> &myGraph) {
 }
 
 
-
-int main(){
+void startMenu() {
     std::string option;
 
     std::cout<<"INDIVIDUAL ROUTE PLANNING TOOL"<<std::endl;
@@ -62,6 +62,12 @@ int main(){
     else{
         std::cout<<"Invalid input"<<std::endl;
     }
+}
+
+int main(){
+
+    createGraph(graph);
+    startMenu();
 
     return 0;
 }

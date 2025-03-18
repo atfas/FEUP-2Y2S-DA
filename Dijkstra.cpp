@@ -42,11 +42,57 @@ void dijkstra(Graph<T> * g, const int &origin) {
 }
 
 template <class T>
+void independentDijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {}) {
+
+    for(auto v : g->getVertexSet()) {
+        v->setDist(INF);
+        v->setPath(nullptr);
+
+        if (std::find(avoidNodes.begin(), avoidNodes.end(), v->getInfo()) != avoidNodes.end()) {
+            v->setVisited(true);
+        } else {
+            v->setVisited(false);
+        }
+    }
+
+    auto s = g->findVertex(origin);
+    if (!s) return;
+    s->setDist(0);
+
+    MutablePriorityQueue<Vertex<T>> q;
+    q.insert(s);
+
+    while(!q.empty()) {
+        auto v = q.extractMin();
+
+        if (v->isVisited()) continue;
+
+        v->setVisited(true);
+
+        for(auto e : v->getAdj()) {
+            auto dest = e->getDest();
+
+            if (dest->isVisited()) continue;
+
+            auto oldDist = dest->getDist();
+            if (relax(e)) {
+                if (oldDist == INF) {
+                    q.insert(dest);
+                } else {
+                    q.decreaseKey(dest);
+                }
+            }
+        }
+    }
+}
+
+template <class T>
 static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) {
     std::vector<T> res;
     auto v = g->findVertex(dest);
     if (v == nullptr || v->getDist() == INF) { // missing or disconnected
         return res;
+
     }
     res.push_back(v->getInfo());
     while(v->getPath() != nullptr) {

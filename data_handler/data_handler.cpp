@@ -1,4 +1,20 @@
 #include "data_handler.h"
+#include "../driving/driving.h"
+
+void inputDriving() {
+    std::string planning;
+    std::cout << "Which type of planning whould you like (independent/restricted): ";
+    getline(std::cin, planning);
+
+    if (planning == "independent") {
+        independentDriving();
+    }
+    else if (planning == "restricted") {
+        restrictedDriving();
+    }
+    else std::cout << "Invalid planning input." << std::endl;
+}
+
 
 void readInput() {
     std::string mode;
@@ -7,7 +23,7 @@ void readInput() {
 
     mode.erase(std::ranges::remove_if(mode, ::isspace).begin(), mode.end());
     if (mode == "driving") {
-        std::cout << "driving" << std::endl;
+        inputDriving();
     }
     else if (mode == "driving-walking") {
         std::cout << "driving-walking" << std::endl;
