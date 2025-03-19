@@ -13,37 +13,22 @@ bool relax(Edge<T> *edge) { // d[u] + w(u,v) < d[v]
     return false;
 }
 
-template <class T>
-void dijkstra(Graph<T> * g, const int &origin) {
-    // Initialize the vertices
-    for(auto v : g->getVertexSet()) {
-        v->setDist(INF);
-        v->setPath(nullptr);
-    }
-    auto s = g->findVertex(origin);
-    s->setDist(0);
+inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& avoidSegments) {
+    for (const auto& pair:avoidSegments) {
+        Vertex<int>* srcVertex = g->findVertex(pair.first);
 
-    MutablePriorityQueue<Vertex<T>> q;
-    q.insert(s);
-    while( ! q.empty() ) {
-        auto v = q.extractMin();
-        for(auto e : v->getAdj()) {
-            auto oldDist = e->getDest()->getDist();
-            if (relax(e)) {
-                if (oldDist == INF) {
-                    q.insert(e->getDest());
-                }
-                else {
-                    q.decreaseKey(e->getDest());
-                }
+        if (!srcVertex) {continue;}
+
+        for (auto edge : srcVertex->getAdj()) {
+            if (edge->getDest()->getInfo() == pair.second) {
+                edge->setAvoid(true);
             }
         }
     }
 }
 
 template <class T>
-void independentDijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {}) {
-
+void drivingDijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}) {
     for(auto v : g->getVertexSet()) {
         v->setDist(INF);
         v->setPath(nullptr);
@@ -54,6 +39,8 @@ void independentDijkstra(Graph<T> * g, const int &origin, const vector<int>& avo
             v->setVisited(false);
         }
     }
+
+    avoidEdges(g, avoidSegments);
 
     auto s = g->findVertex(origin);
     if (!s) return;
@@ -70,6 +57,8 @@ void independentDijkstra(Graph<T> * g, const int &origin, const vector<int>& avo
         v->setVisited(true);
 
         for(auto e : v->getAdj()) {
+            if (e->getAvoid()) continue;
+
             auto dest = e->getDest();
 
             if (dest->isVisited()) continue;

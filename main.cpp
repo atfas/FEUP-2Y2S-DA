@@ -57,7 +57,7 @@ void startMenu() {
         readInput();
     }
     else if (option == "file"){
-        readFile();
+        drivingFileInput();
     }
     else{
         std::cout<<"Invalid input"<<std::endl;
