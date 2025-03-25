@@ -11,15 +11,13 @@ std::vector<std::pair<Path, Path>> findPaths(int source, int destination, int ma
 
     Dijkstra(&graph, source, avoidNodes, avoidSegments);
 
-    std::vector<Path> drivingPaths;
-    std::unordered_map<int, Path> drivingPathsMap;
+    std::unordered_map<int, Path> drivingPaths;
 
     for (auto v : graph.getVertexSet()) {
         if (v->isParking()) {
             std::vector<int> firstPath = getPath(&graph, source, v->getInfo());
             Path routePath = createPath(firstPath);
-            drivingPaths.push_back(routePath);
-            drivingPathsMap[v->getInfo()] = routePath;
+            drivingPaths[v->getInfo()] = routePath;
         }
     }
 
@@ -39,12 +37,12 @@ std::vector<std::pair<Path, Path>> findPaths(int source, int destination, int ma
         }
     }
 
-    if (walkingPaths.size() <=1) {
+    if (walkingPaths.size() <= 1) {
         paths.push_back({{}, {}});
         paths.push_back({{}, {}});
     }
 
-    for (const auto& [parkingNode, drivePath] : drivingPathsMap) {
+    for (const auto& [parkingNode, drivePath] : drivingPaths) {
         auto it = walkingPaths.find(parkingNode);
         if (it != walkingPaths.end()) {
             paths.push_back({drivePath, it->second});
@@ -62,9 +60,8 @@ std::vector<std::pair<Path, Path>> findPaths(int source, int destination, int ma
 }
 
 
-void drivingWalking(int source, int destination, int maxWalkTime, std::vector<int>& avoidNodes, std::vector<std::pair<int, int>>&
-                    avoidSegments) {
-    auto paths = findPaths(source, destination, maxWalkTime, avoidNodes);
+void drivingWalking(int source, int destination, int maxWalkTime, const std::vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}) {
+    auto paths = findPaths(source, destination, maxWalkTime, avoidNodes, avoidSegments);
 
     Path drivingPath = paths[0].first;
     Path walkingPath = paths[0].second;
@@ -75,8 +72,9 @@ void drivingWalking(int source, int destination, int maxWalkTime, std::vector<in
     drivingWalkingOutput(source, destination, parkingNode, drivingPath, walkingPath, avoidNodes, avoidSegments, maxWalkTime);
 }
 
-void drivingWalkingApprox(int source, int destination) {
-    auto paths = findPaths(source, destination,999999);
+void drivingWalkingApprox(int source, int destination, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>&
+                    avoidSegments) {
+    auto paths = findPaths(source, destination,999999, avoidNodes, avoidSegments);
 
     Path drivingPath1 = paths[0].first;
     Path walkingPath1 = paths[0].second;
@@ -92,5 +90,4 @@ void drivingWalkingApprox(int source, int destination) {
 
     drivingWalkingApproxOutput(source, destination, parkingNode1,drivingPath1,walkingPath1, parkingNode2, drivingPath2, walkingPath2);
 }
-
 

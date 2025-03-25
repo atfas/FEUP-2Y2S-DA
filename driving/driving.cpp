@@ -7,6 +7,7 @@
 extern Graph<int> graph;
 
 void independentDriving(int source, int destination) {
+
     Dijkstra(&graph, source);
     vector<int> firstPath = getPath(&graph, source, destination);
 
