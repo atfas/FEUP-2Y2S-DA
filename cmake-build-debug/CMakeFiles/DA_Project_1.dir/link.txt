@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/DA_Project_1.dir/main.cpp.o CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.o CMakeFiles/DA_Project_1.dir/data_handler/data_handler.cpp.o CMakeFiles/DA_Project_1.dir/driving/driving.cpp.o -o DA_Project_1
