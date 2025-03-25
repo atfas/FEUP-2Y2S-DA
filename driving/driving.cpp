@@ -1,107 +1,55 @@
-//
-// Created by ash on 3/18/25.
-//
+#include "driving.h"
 #include "../Dijkstra.cpp"
 #include "../data_structures/Graph.h"
-#include <sstream>
+#include "../data_handler/data_handler.h"
+
 
 extern Graph<int> graph;
 
-std::vector<std::pair<std::string, std::string>> parseAvoidSegments(std::string avoidSegmentsInput) {
-    std::vector<std::pair<std::string, std::string>> avoidSegments;
-    std::vector<std::pair<std::string, std::string>> segments;
+void independentDriving(int source, int destination) {
+    Dijkstra(&graph, source);
+    vector<int> firstPath = getPath(&graph, source, destination);
 
-    std::stringstream ssSegments(avoidSegmentsInput);
-    std::string segment;
-
-    int i = 0;
-    while (std::getline(ssSegments, segment, ')')) {
-        if (segment.empty()) continue;
-
-        std::stringstream segStream(segment.substr(1)); // Remove the '('
-        std::string first, second;
-
-        std::getline(segStream, first, ',');  // Extract first value
-        std::getline(segStream, second, ','); // Extract second value
-        if (i > 0) first = first.substr(1, first.size() - 1);
-        avoidSegments.emplace_back(first, second);
-        i++;
-    }
-    return avoidSegments;
-}
-
-void printPath(vector<int> &path) {
-    if (path.empty()) {
-        std::cout<< "none" << std::endl;
-        return;
-    }
-
-    for (size_t i = 0; i < path.size(); i++) {
-        std::cout << path[i];
-        if (i != path.size() - 1) {
-            std::cout << ",";
-        }
-    }
-    Vertex<int>* lastVertext = graph.findVertex(path.back());
-    std::cout << "(" << lastVertext->getDist() << ")" << std::endl;
-}
-
-void independentDriving() {
-    std::string source, destination;
-
-    std::cout << "Source: ";
-    std::getline(std::cin, source);
-
-    std::cout << "Destination: ";
-    std::getline(std::cin, destination);
-
-    independentDijkstra(&graph, std::stoi(source));
-
-    vector<int> routePath = getPath(&graph, stoi(source), stoi(destination));
-
-    std::cout << "BestDrivingRoute:";
-    printPath(routePath);
+    Path routePath = createPath(firstPath);
 
     vector<int> avoidNodes;
-    if (!routePath.empty()) {
-        for (size_t i = 1; i < routePath.size() -1; i++) {
-            avoidNodes.push_back(routePath[i]);
+    if (!firstPath.empty()) {
+        for (size_t i = 1; i < firstPath.size() - 1; i++) {
+            avoidNodes.push_back(firstPath[i]);
         }
     }
 
-    independentDijkstra(&graph, std::stoi(source), avoidNodes);
-    vector<int> alternativePath = getPath(&graph, stoi(source), stoi(destination));
+    std::vector<std::pair<int, int>> avoidSegments;
+    avoidSegments.push_back({source,destination});
 
-    std::cout << "AlternativeDrivingRoute:";
-    printPath(alternativePath);
+    Dijkstra(&graph, source, avoidNodes, avoidSegments);
+    vector<int> secondPath = getPath(&graph, source, destination);
 
+    Path alternativePath = createPath(secondPath);
+
+    drivingIndependentOutput(source,destination,routePath, alternativePath);
 }
 
 
-void restrictedDriving() {
-    std::string source, destination, avoidNodesInput, avoidSegmentsInput;
-    std::vector<std::string> avoidNodes;
-    std::vector<std::pair<std::string, std::string>> avoidSegments;
+void restrictedDriving(int source, int destination, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>& avoidSegments, const std::string& includeNode) {
+    Path routePath;
+    if (includeNode.empty()) {
+        Dijkstra(&graph, source, avoidNodes, avoidSegments);
+        vector<int> firstPath = getPath(&graph, source, destination);
+        routePath = createPath(firstPath);
+    }
+    else if (stoi(includeNode)) {
+        Dijkstra(&graph, source, avoidNodes, avoidSegments);
+        vector<int> firstPath = getPath(&graph, source, stoi(includeNode));
+        Path routePath1 = createPath(firstPath);
 
-    std::cout << "Source: ";
-    std::getline(std::cin, source);
+        Dijkstra(&graph, stoi(includeNode), avoidNodes, avoidSegments);
+        vector<int> secondPath = getPath(&graph, stoi(includeNode), destination);
+        Path routePath2 = createPath(secondPath);
 
-    std::cout << "Destination: ";
-    std::getline(std::cin, destination);
-
-    std::cout << "AvoidNodes (comma-separated): ";
-    std::getline(std::cin, avoidNodesInput);
-
-    std::stringstream ss(avoidNodesInput);
-    std::string node;
-
-    while (std::getline(ss, node, ',')) {
-        avoidNodes.push_back(node);
+        routePath = mergePaths(routePath1, routePath2);
     }
 
-    std::cout << "AvoidSegments ((id,id) format, comma-separated): ";
-    std::getline(std::cin, avoidSegmentsInput);
-    avoidSegments = parseAvoidSegments(avoidSegmentsInput);
-
+    drivingRestrictedOutput(source, destination, routePath);
 }
 

@@ -11,4 +11,6 @@ add_executable(DA_Project_1 main.cpp
         data_handler/data_handler.h
         driving/driving.h
         driving/driving.cpp
+        drivingwalking/drivingwalking.h
+        drivingwalking/drivingwalking.cpp
 )

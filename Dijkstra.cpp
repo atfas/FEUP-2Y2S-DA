@@ -1,10 +1,9 @@
 #include "data_structures/Graph.h"
 
-
 using namespace std;
 
 template <class T>
-bool relax(Edge<T> *edge) { // d[u] + w(u,v) < d[v]
+bool drivingRelax(Edge<T> *edge) { // d[u] + w(u,v) < d[v]
     if (edge->getOrig()->getDist() + edge->getDriving() < edge->getDest()->getDist()) { // we have found a better way to reach v
         edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getDriving()); // d[v] = d[u] + w(u,v)
         edge->getDest()->setPath(edge); // set the predecessor of v to u; in this case the edge from u to v
@@ -14,36 +13,31 @@ bool relax(Edge<T> *edge) { // d[u] + w(u,v) < d[v]
 }
 
 template <class T>
-void dijkstra(Graph<T> * g, const int &origin) {
-    // Initialize the vertices
-    for(auto v : g->getVertexSet()) {
-        v->setDist(INF);
-        v->setPath(nullptr);
+bool walkingRelax(Edge<T> *edge) {
+    if (edge->getOrig()->getDist() + edge->getWalking() < edge->getDest()->getDist()) { // we have found a better way to reach v
+        edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getWalking()); // d[v] = d[u] + w(u,v)
+        edge->getDest()->setPath(edge); // set the predecessor of v to u; in this case the edge from u to v
+        return true;
     }
-    auto s = g->findVertex(origin);
-    s->setDist(0);
+    return false;
+}
 
-    MutablePriorityQueue<Vertex<T>> q;
-    q.insert(s);
-    while( ! q.empty() ) {
-        auto v = q.extractMin();
-        for(auto e : v->getAdj()) {
-            auto oldDist = e->getDest()->getDist();
-            if (relax(e)) {
-                if (oldDist == INF) {
-                    q.insert(e->getDest());
-                }
-                else {
-                    q.decreaseKey(e->getDest());
-                }
+inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& avoidSegments) {
+    for (const auto& pair:avoidSegments) {
+        Vertex<int>* srcVertex = g->findVertex(pair.first);
+
+        if (!srcVertex) {continue;}
+
+        for (auto edge : srcVertex->getAdj()) {
+            if (edge->getDest()->getInfo() == pair.second) {
+                edge->setAvoid(true);
             }
         }
     }
 }
 
 template <class T>
-void independentDijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {}) {
-
+void Dijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}, bool isWalking = false) {
     for(auto v : g->getVertexSet()) {
         v->setDist(INF);
         v->setPath(nullptr);
@@ -54,6 +48,8 @@ void independentDijkstra(Graph<T> * g, const int &origin, const vector<int>& avo
             v->setVisited(false);
         }
     }
+
+    avoidEdges(g, avoidSegments);
 
     auto s = g->findVertex(origin);
     if (!s) return;
@@ -70,12 +66,17 @@ void independentDijkstra(Graph<T> * g, const int &origin, const vector<int>& avo
         v->setVisited(true);
 
         for(auto e : v->getAdj()) {
+            if (e->getAvoid()) continue;
+
             auto dest = e->getDest();
 
             if (dest->isVisited()) continue;
 
             auto oldDist = dest->getDist();
-            if (relax(e)) {
+
+            bool relaxed = isWalking ? walkingRelax(e) : drivingRelax(e);
+
+            if (relaxed) {
                 if (oldDist == INF) {
                     q.insert(dest);
                 } else {

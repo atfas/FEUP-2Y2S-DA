@@ -1,4 +1,4 @@
-# Install script for directory: /home/ash/CLionProjects/DA-Project
+# Install script for directory: /home/shad0w/Desktop/Faculdade/2º ano/2º semestre/DA/DA Project 1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -57,6 +57,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/home/ash/CLionProjects/DA-Project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/shad0w/Desktop/Faculdade/2º ano/2º semestre/DA/DA Project 1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
