@@ -7,7 +7,7 @@
 extern Graph<int> graph;
 
 void independentDriving(int source, int destination) {
-    drivingDijkstra(&graph, source);
+    Dijkstra(&graph, source);
     vector<int> firstPath = getPath(&graph, source, destination);
 
     Path routePath = createPath(firstPath);
@@ -22,7 +22,7 @@ void independentDriving(int source, int destination) {
     std::vector<std::pair<int, int>> avoidSegments;
     avoidSegments.push_back({source,destination});
 
-    drivingDijkstra(&graph, source, avoidNodes, avoidSegments);
+    Dijkstra(&graph, source, avoidNodes, avoidSegments);
     vector<int> secondPath = getPath(&graph, source, destination);
 
     Path alternativePath = createPath(secondPath);
@@ -34,16 +34,16 @@ void independentDriving(int source, int destination) {
 void restrictedDriving(int source, int destination, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>& avoidSegments, const std::string& includeNode) {
     Path routePath;
     if (includeNode.empty()) {
-        drivingDijkstra(&graph, source, avoidNodes, avoidSegments);
+        Dijkstra(&graph, source, avoidNodes, avoidSegments);
         vector<int> firstPath = getPath(&graph, source, destination);
         routePath = createPath(firstPath);
     }
     else if (stoi(includeNode)) {
-        drivingDijkstra(&graph, source, avoidNodes, avoidSegments);
+        Dijkstra(&graph, source, avoidNodes, avoidSegments);
         vector<int> firstPath = getPath(&graph, source, stoi(includeNode));
         Path routePath1 = createPath(firstPath);
 
-        drivingDijkstra(&graph, stoi(includeNode), avoidNodes, avoidSegments);
+        Dijkstra(&graph, stoi(includeNode), avoidNodes, avoidSegments);
         vector<int> secondPath = getPath(&graph, stoi(includeNode), destination);
         Path routePath2 = createPath(secondPath);
 
