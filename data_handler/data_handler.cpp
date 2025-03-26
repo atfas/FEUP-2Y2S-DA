@@ -87,6 +87,39 @@ void writePathToFile(std::ofstream& file, Path &path) {
     file << " (" << path.getDistance() << ")\n";
 }
 
+void messageOutput(std::string& message, int source, int destination, int maxWalkTime, const std::vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}) {
+    auto paths_maxTime = findPaths(source, destination, 999999, avoidNodes, avoidSegments);
+
+    Path drivingPath_maxTime = paths_maxTime[0].first;
+    Path walkingPath_maxTime = paths_maxTime[0].second;
+
+    int parkingNode1 = -1;
+
+    if (!walkingPath_maxTime.getRoute().empty()) parkingNode1 = walkingPath_maxTime.getRoute()[0];
+
+    if (avoidNodes.empty() && avoidSegments.empty() || parkingNode1 != -1) {
+        message = "No possible route with max. walking time of " + std::to_string(maxWalkTime) + " minutes.";
+        return;
+    }
+
+    auto paths_blocked = findPaths(source, destination, maxWalkTime, {}, {});
+
+    Path drivingPath_blocked = paths_blocked[0].first;
+    Path walkingPath_blocked = paths_blocked[0].second;
+
+    int parkingNode2 = -1;
+
+    if (!walkingPath_blocked.getRoute().empty()) parkingNode2 = walkingPath_blocked.getRoute()[0];
+
+    if (parkingNode2 != -1) {
+        message = "No possible route avoiding the restricted nodes and edges.";
+        return;
+    }
+
+    message = "No possible route with max. walking time of " + std::to_string(maxWalkTime) + " minutes and avoiding the restricted nodes and edges.";
+}
+
+
 void drivingIndependentInput() {
     std::string source, destination;
 
@@ -238,8 +271,9 @@ void drivingRestrictedOutput(int source, int destination, Path& routePath) {
 
 
 
-void drivingWalkingOutput(int source, int destination, int parkingNode, Path& drivingPath, Path& walkingPath, std::vector<int>& avoidNodes, std::
+void drivingWalkingOutput(int source, int destination, int parkingNode, Path& drivingPath, Path& walkingPath, const std::vector<int>& avoidNodes, const std::
                           vector<std::pair<int, int>>& avoidSegments, int maxWalkTime) {
+    std::string message;
     std::cout << "Source:" << source << std::endl;
     std::cout << "Destination:" << destination << std::endl;
     std::cout << "DrivingRoute:";
@@ -253,6 +287,10 @@ void drivingWalkingOutput(int source, int destination, int parkingNode, Path& dr
 
     if (walkingPath.getDistance() + drivingPath.getDistance() < INF) std::cout << "TotalTime:" << walkingPath.getDistance() + drivingPath.getDistance() << std::endl;
     else std::cout << "TotalTime:"<< std::endl;
+
+    if (parkingNode == -1) messageOutput(message, source, destination, maxWalkTime, avoidNodes, avoidSegments);
+
+    std::cout << "Message:" << message << std::endl;
 
     std::ofstream o_file("output.txt");
     if (!o_file) {
@@ -273,6 +311,8 @@ void drivingWalkingOutput(int source, int destination, int parkingNode, Path& dr
     if (walkingPath.getDistance() + drivingPath.getDistance() < INF) o_file << "TotalTime:" << walkingPath.getDistance() + drivingPath.getDistance() << "\n";
     else o_file << "TotalTime:" << "\n";
 
+    o_file << "Message:" << message << "\n";
+
     o_file.close();
 
     if (parkingNode == -1) {
@@ -284,8 +324,12 @@ void drivingWalkingOutput(int source, int destination, int parkingNode, Path& dr
         if (answer == "Y"){
             std::cout << "Source:" << source << std::endl;
             std::cout << "Destination:" << destination << std::endl;
-            drivingWalkingApprox(source, destination);
+            drivingWalkingApprox(source, destination, avoidNodes, avoidSegments);
         }
+        std::cout << "Would you like to consider all nodes and edges for a more broad search?(Y/N):";
+        std::getline(std::cin, answer);
+        if (answer == "N") return;
+        if (answer == "Y") drivingWalkingApprox(source, destination, {}, {});
     }
 }
 

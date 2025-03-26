@@ -23,13 +23,27 @@ bool walkingRelax(Edge<T> *edge) {
 }
 
 inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& avoidSegments) {
-    for (const auto& pair:avoidSegments) {
-        Vertex<int>* srcVertex = g->findVertex(pair.first);
+    for (auto v : g->getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            e->setAvoid(false); 
+        }
+    }
 
-        if (!srcVertex) {continue;}
+    for (auto pair:avoidSegments) {
 
-        for (auto edge : srcVertex->getAdj()) {
+        Vertex<int>* srcVertex1 = g->findVertex(pair.first);
+        Vertex<int>* srcVertex2 = g->findVertex(pair.second);
+
+        if (!srcVertex1 || !srcVertex2) {continue;}
+
+        for (auto edge : srcVertex1->getAdj()) {
             if (edge->getDest()->getInfo() == pair.second) {
+                edge->setAvoid(true);
+            }
+        }
+
+        for (auto edge : srcVertex2->getAdj()) {
+            if (edge->getDest()->getInfo() == pair.first) {
                 edge->setAvoid(true);
             }
         }
