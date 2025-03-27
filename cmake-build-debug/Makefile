@@ -153,6 +153,30 @@ Dijkstra.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.s
 .PHONY : Dijkstra.cpp.s
 
+data_handler/csv_file.o: data_handler/csv_file.cpp.o
+.PHONY : data_handler/csv_file.o
+
+# target to build an object file
+data_handler/csv_file.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o
+.PHONY : data_handler/csv_file.cpp.o
+
+data_handler/csv_file.i: data_handler/csv_file.cpp.i
+.PHONY : data_handler/csv_file.i
+
+# target to preprocess a source file
+data_handler/csv_file.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.i
+.PHONY : data_handler/csv_file.cpp.i
+
+data_handler/csv_file.s: data_handler/csv_file.cpp.s
+.PHONY : data_handler/csv_file.s
+
+# target to generate assembly for a file
+data_handler/csv_file.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.s
+.PHONY : data_handler/csv_file.cpp.s
+
 data_handler/data_handler.o: data_handler/data_handler.cpp.o
 .PHONY : data_handler/data_handler.o
 
@@ -201,6 +225,30 @@ driving/driving.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/driving/driving.cpp.s
 .PHONY : driving/driving.cpp.s
 
+drivingwalking/drivingwalking.o: drivingwalking/drivingwalking.cpp.o
+.PHONY : drivingwalking/drivingwalking.o
+
+# target to build an object file
+drivingwalking/drivingwalking.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o
+.PHONY : drivingwalking/drivingwalking.cpp.o
+
+drivingwalking/drivingwalking.i: drivingwalking/drivingwalking.cpp.i
+.PHONY : drivingwalking/drivingwalking.i
+
+# target to preprocess a source file
+drivingwalking/drivingwalking.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.i
+.PHONY : drivingwalking/drivingwalking.cpp.i
+
+drivingwalking/drivingwalking.s: drivingwalking/drivingwalking.cpp.s
+.PHONY : drivingwalking/drivingwalking.s
+
+# target to generate assembly for a file
+drivingwalking/drivingwalking.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA_Project_1.dir/build.make CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.s
+.PHONY : drivingwalking/drivingwalking.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -237,12 +285,18 @@ help:
 	@echo "... Dijkstra.o"
 	@echo "... Dijkstra.i"
 	@echo "... Dijkstra.s"
+	@echo "... data_handler/csv_file.o"
+	@echo "... data_handler/csv_file.i"
+	@echo "... data_handler/csv_file.s"
 	@echo "... data_handler/data_handler.o"
 	@echo "... data_handler/data_handler.i"
 	@echo "... data_handler/data_handler.s"
 	@echo "... driving/driving.o"
 	@echo "... driving/driving.i"
 	@echo "... driving/driving.s"
+	@echo "... drivingwalking/drivingwalking.o"
+	@echo "... drivingwalking/drivingwalking.i"
+	@echo "... drivingwalking/drivingwalking.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

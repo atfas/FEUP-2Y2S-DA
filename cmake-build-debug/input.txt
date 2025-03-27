@@ -3,4 +3,4 @@ Source:8
 Destination:5
 MaxWalkTime:5
 AvoidNodes:
-AvoidSegments:
+AvoidSegments:(5,6)

@@ -6,6 +6,7 @@
 
 extern Graph<int> graph;
 
+// Parses avoid segments from input string into vector of integer pairs
 std::vector<std::pair<int, int>> parseAvoidSegments(const std::string& avoidSegmentsInput) {
     std::vector<std::pair<std::string, std::string>> avoidSegmentsString;
     std::vector<std::pair<std::string, std::string>> segments;
@@ -21,41 +22,47 @@ std::vector<std::pair<int, int>> parseAvoidSegments(const std::string& avoidSegm
         std::stringstream segStream(segment.substr(1)); // Remove the '('
         std::string first, second;
 
-        std::getline(segStream, first, ',');  // Extract first value
-        std::getline(segStream, second, ','); // Extract second value
+        std::getline(segStream, first, ',');
+        std::getline(segStream, second, ',');
+
         if (i > 0) first = first.substr(1, first.size() - 1);
+
         avoidSegmentsString.emplace_back(first, second);
         i++;
     }
 
-    for (const auto& pair : avoidSegmentsString){
-        avoidSegments.emplace_back(stoi(pair.first), stoi(pair.second));
-    }
+    for (const auto& pair : avoidSegmentsString){ avoidSegments.emplace_back(stoi(pair.first), stoi(pair.second)); }
     return avoidSegments;
 }
 
+// Creates a path from a vector of nodes, with optional reversal
 Path createPath(std::vector<int> &path, bool reverse) {
     if (path.empty()) return Path();
+
     Vertex<int>* lastVertext;
+
     if (reverse) lastVertext = graph.findVertex(path.front());
     else lastVertext = graph.findVertex(path.back());
+
     Path newPath = Path(path, lastVertext->getDist());
     return newPath;
 }
 
+// Merges two paths that share a common node
 Path mergePaths(Path firstPath, Path secondPath) {
     Path result;
     if (firstPath.getRoute()[firstPath.getRoute().size()-1] == secondPath.getRoute()[0]){
         std::vector<int> newRoute = firstPath.getRoute();
-        for (int i = 1; i < secondPath.getRoute().size(); i++) {
-            newRoute.push_back(secondPath.getRoute()[i]);
-        }
+
+        for (int i = 1; i < secondPath.getRoute().size(); i++) { newRoute.push_back(secondPath.getRoute()[i]); }
+
         result.setRoute(newRoute);
         result.setDistance(firstPath.getDistance() + secondPath.getDistance());
     }
     return result;
 }
 
+// Writes path to terminal output
 void writePathTerminal(Path &path) {
     if (path.getRoute().empty()) {
         std::cout<< "none" << std::endl;
@@ -64,13 +71,12 @@ void writePathTerminal(Path &path) {
 
     for (size_t i = 0; i < path.getRoute().size(); i++) {
         std::cout << path.getRoute()[i];
-        if (i != path.getRoute().size() - 1) {
-            std::cout << ",";
-        }
+        if (i != path.getRoute().size() - 1) { std::cout << ","; }
     }
     std::cout << "(" << path.getDistance() << ")" << std::endl;
 }
 
+// Writes path to file output
 void writePathToFile(std::ofstream& file, Path &path) {
     if (path.getRoute().empty()) {
         file << "none\n";
@@ -79,14 +85,14 @@ void writePathToFile(std::ofstream& file, Path &path) {
 
     for (size_t i = 0; i < path.getRoute().size(); i++) {
         file << path.getRoute()[i];
-        if (i != path.getRoute().size() - 1) {
-            file << ",";
-        }
+
+        if (i != path.getRoute().size() - 1) { file << ","; }
     }
 
     file << " (" << path.getDistance() << ")\n";
 }
 
+// Generates message for route impossibility scenarios
 void messageOutput(std::string& message, int source, int destination, int maxWalkTime, const std::vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}) {
     auto paths_maxTime = findPaths(source, destination, 999999, avoidNodes, avoidSegments);
 
@@ -119,7 +125,7 @@ void messageOutput(std::string& message, int source, int destination, int maxWal
     message = "No possible route with max. walking time of " + std::to_string(maxWalkTime) + " minutes and avoiding the restricted nodes and edges.";
 }
 
-
+// Handles interactive input for independent driving route planning
 void drivingIndependentInput() {
     std::string source, destination;
 
@@ -129,9 +135,11 @@ void drivingIndependentInput() {
     std::cout << "Destination:";
     std::getline(std::cin, destination);
 
+    std::cout << "========================================" << std::endl;
     independentDriving(stoi(source), stoi(destination));
 }
 
+// Handles interactive input for restricted driving route planning
 void drivingRestrictedInput() {
     std::string source, destination, avoidNodesInput, avoidSegmentsInput, includeNode;
     std::vector<std::string> avoidNodesString;
@@ -149,13 +157,9 @@ void drivingRestrictedInput() {
     std::stringstream ss(avoidNodesInput);
     std::string node;
 
-    while (std::getline(ss, node, ',')) {
-        avoidNodesString.push_back(node);
-    }
+    while (std::getline(ss, node, ',')) { avoidNodesString.push_back(node); }
 
-    for (const auto& i : avoidNodesString){
-        avoidNodes.push_back(stoi(i));
-    }
+    for (const auto& i : avoidNodesString){ avoidNodes.push_back(stoi(i)); }
 
     std::cout << "AvoidSegments:";
     std::getline(std::cin, avoidSegmentsInput);
@@ -164,10 +168,16 @@ void drivingRestrictedInput() {
     std::cout <<"IncludeNode:";
     std::getline(std::cin, includeNode);
 
+    std::cout << "========================================" << std::endl;
+
     restrictedDriving(stoi(source), stoi(destination), avoidNodes, avoidSegments, includeNode);
 }
 
+// Reads and processes input from file
 void fileInput() {
+
+    std::cout << "========================================" << std::endl;
+
     std::ifstream i_file("input.txt");
     if (!i_file) {
         std::cerr << "Error opening file!" << std::endl;
@@ -219,11 +229,11 @@ void fileInput() {
         if (num_lines == 3) independentDriving(stoi(source), stoi(destination));
         else if (num_lines > 3) restrictedDriving(stoi(source), stoi(destination), avoidNodes, avoidSegments, includeNodes);
     }
-    else if (mode == "driving-walking") drivingWalking(stoi(source), stoi(destination), stoi(maxWalkTime), avoidNodes,
-                                                       avoidSegments);
+    else if (mode == "driving-walking")
+        drivingWalking(stoi(source), stoi(destination), stoi(maxWalkTime), avoidNodes, avoidSegments);
 }
 
-
+// Output functions for different routing scenarios
 void drivingIndependentOutput(int source, int destination, Path& routePath, Path& alternativePath) {
     std::cout << "Source:" << source << std::endl;
     std::cout << "Destination:" << destination << std::endl;
@@ -269,10 +279,7 @@ void drivingRestrictedOutput(int source, int destination, Path& routePath) {
     o_file.close();
 }
 
-
-
-void drivingWalkingOutput(int source, int destination, int parkingNode, Path& drivingPath, Path& walkingPath, const std::vector<int>& avoidNodes, const std::
-                          vector<std::pair<int, int>>& avoidSegments, int maxWalkTime) {
+void drivingWalkingOutput(int source, int destination, int parkingNode, Path& drivingPath, Path& walkingPath, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>& avoidSegments, int maxWalkTime) {
     std::string message;
     std::cout << "Source:" << source << std::endl;
     std::cout << "Destination:" << destination << std::endl;
@@ -297,6 +304,7 @@ void drivingWalkingOutput(int source, int destination, int parkingNode, Path& dr
         std::cerr << "Error: Could not create file" << std::endl;
         return;
     }
+
     o_file << "Source:" << source << "\n";
     o_file << "Destination:" << destination << "\n";
     o_file << "DrivingRoute:";
@@ -317,6 +325,8 @@ void drivingWalkingOutput(int source, int destination, int parkingNode, Path& dr
 
     if (parkingNode == -1) {
         std::string answer;
+
+        std::cout << "========================================" << std::endl;
         std::cout << "No route available. Would you like to see alternative routes? (Y/N):";
         std::getline(std::cin, answer);
 
@@ -326,6 +336,8 @@ void drivingWalkingOutput(int source, int destination, int parkingNode, Path& dr
             std::cout << "Destination:" << destination << std::endl;
             drivingWalkingApprox(source, destination, avoidNodes, avoidSegments);
         }
+
+        std::cout << "========================================" << std::endl;
         std::cout << "Would you like to consider all nodes and edges for a more broad search?(Y/N):";
         std::getline(std::cin, answer);
         if (answer == "N") return;
@@ -392,8 +404,7 @@ void drivingWalkingApproxOutput(int source, int destination, int parkingNode1, P
     o_file.close();
 }
 
-
-
+// Interactive input handlers
 void inputDriving() {
     std::string planning;
     std::cout << "Which type of planning would you like (independent/restricted): ";
@@ -443,9 +454,11 @@ void inputDrivingWalking() {
     drivingWalking(stoi(source), stoi(destination), stoi(maxWalkTime), avoidNodes, avoidSegments);
 }
 
-
+// Main input reading function
 void readInput() {
     std::string mode;
+
+    std::cout << "========================================" << std::endl;
     std::cout << "Mode:";
     getline(std::cin, mode);
 

@@ -8,4 +8,4 @@ void drivingWalking(int source, int destination, int maxWalkTime, const std::vec
                     avoidSegments);
 void drivingWalkingApprox(int source, int destination, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>& avoidSegments);
 std::vector<std::pair<Path,Path>> findPaths (int source, int destination, int maxWalkTime, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>& avoidSegments);
-#endif //DRIVINGWALKING_H
+#endif

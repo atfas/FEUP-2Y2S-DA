@@ -4,6 +4,15 @@
 
 extern Graph<int> graph;
 
+/**
+ * Finds paths combining driving and walking routes
+ * @param source Starting node ID
+ * @param destination Ending node ID
+ * @param maxWalkTime Maximum time allowed for walking
+ * @param avoidNodes List of nodes to avoid in routing
+ * @param avoidSegments List of road segments to avoid
+ * @return Vector of driving and walking path pairs
+ */
 std::vector<std::pair<Path, Path>> findPaths(int source, int destination, int maxWalkTime,
     const std::vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}) {
 
@@ -59,7 +68,14 @@ std::vector<std::pair<Path, Path>> findPaths(int source, int destination, int ma
     return paths;
 }
 
-
+/**
+ * Computes the best driving and walking route with a maximum walking time constraint
+ * @param source Starting node ID
+ * @param destination Ending node ID
+ * @param maxWalkTime Maximum time allowed for walking
+ * @param avoidNodes List of nodes to avoid in routing
+ * @param avoidSegments List of road segments to avoid
+ */
 void drivingWalking(int source, int destination, int maxWalkTime, const std::vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}) {
     auto paths = findPaths(source, destination, maxWalkTime, avoidNodes, avoidSegments);
 
@@ -72,8 +88,14 @@ void drivingWalking(int source, int destination, int maxWalkTime, const std::vec
     drivingWalkingOutput(source, destination, parkingNode, drivingPath, walkingPath, avoidNodes, avoidSegments, maxWalkTime);
 }
 
-void drivingWalkingApprox(int source, int destination, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>&
-                    avoidSegments) {
+/**
+ * Computes approximation of two best driving and walking routes
+ * @param source Starting node ID
+ * @param destination Ending node ID
+ * @param avoidNodes List of nodes to avoid in routing
+ * @param avoidSegments List of road segments to avoid
+ */
+void drivingWalkingApprox(int source, int destination, const std::vector<int>& avoidNodes, const std::vector<std::pair<int, int>>& avoidSegments) {
     auto paths = findPaths(source, destination,999999, avoidNodes, avoidSegments);
 
     Path drivingPath1 = paths[0].first;
@@ -90,4 +112,3 @@ void drivingWalkingApprox(int source, int destination, const std::vector<int>& a
 
     drivingWalkingApproxOutput(source, destination, parkingNode1,drivingPath1,walkingPath1, parkingNode2, drivingPath2, walkingPath2);
 }
-

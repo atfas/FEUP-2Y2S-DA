@@ -125,12 +125,42 @@ CMakeFiles/DA_Project_1.dir/driving/driving.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DA_Project_1.dir/driving/driving.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ash/CLionProjects/DA-Project/driving/driving.cpp -o CMakeFiles/DA_Project_1.dir/driving/driving.cpp.s
 
+CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o: CMakeFiles/DA_Project_1.dir/flags.make
+CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o: /home/ash/CLionProjects/DA-Project/drivingwalking/drivingwalking.cpp
+CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o: CMakeFiles/DA_Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ash/CLionProjects/DA-Project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o -MF CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o.d -o CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o -c /home/ash/CLionProjects/DA-Project/drivingwalking/drivingwalking.cpp
+
+CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ash/CLionProjects/DA-Project/drivingwalking/drivingwalking.cpp > CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.i
+
+CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ash/CLionProjects/DA-Project/drivingwalking/drivingwalking.cpp -o CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.s
+
+CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o: CMakeFiles/DA_Project_1.dir/flags.make
+CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o: /home/ash/CLionProjects/DA-Project/data_handler/csv_file.cpp
+CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o: CMakeFiles/DA_Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ash/CLionProjects/DA-Project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o -MF CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o.d -o CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o -c /home/ash/CLionProjects/DA-Project/data_handler/csv_file.cpp
+
+CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ash/CLionProjects/DA-Project/data_handler/csv_file.cpp > CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.i
+
+CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ash/CLionProjects/DA-Project/data_handler/csv_file.cpp -o CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.s
+
 # Object files for target DA_Project_1
 DA_Project_1_OBJECTS = \
 "CMakeFiles/DA_Project_1.dir/main.cpp.o" \
 "CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.o" \
 "CMakeFiles/DA_Project_1.dir/data_handler/data_handler.cpp.o" \
-"CMakeFiles/DA_Project_1.dir/driving/driving.cpp.o"
+"CMakeFiles/DA_Project_1.dir/driving/driving.cpp.o" \
+"CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o" \
+"CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o"
 
 # External object files for target DA_Project_1
 DA_Project_1_EXTERNAL_OBJECTS =
@@ -139,9 +169,11 @@ DA_Project_1: CMakeFiles/DA_Project_1.dir/main.cpp.o
 DA_Project_1: CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.o
 DA_Project_1: CMakeFiles/DA_Project_1.dir/data_handler/data_handler.cpp.o
 DA_Project_1: CMakeFiles/DA_Project_1.dir/driving/driving.cpp.o
+DA_Project_1: CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o
+DA_Project_1: CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o
 DA_Project_1: CMakeFiles/DA_Project_1.dir/build.make
 DA_Project_1: CMakeFiles/DA_Project_1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ash/CLionProjects/DA-Project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable DA_Project_1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ash/CLionProjects/DA-Project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable DA_Project_1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DA_Project_1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

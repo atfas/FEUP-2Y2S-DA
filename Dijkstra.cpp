@@ -2,30 +2,37 @@
 
 using namespace std;
 
+// Relax an edge for driving routes, updating destination vertex if a shorter path is found
+// @param edge Pointer to the edge to be relaxed
 template <class T>
-bool drivingRelax(Edge<T> *edge) { // d[u] + w(u,v) < d[v]
-    if (edge->getOrig()->getDist() + edge->getDriving() < edge->getDest()->getDist()) { // we have found a better way to reach v
-        edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getDriving()); // d[v] = d[u] + w(u,v)
-        edge->getDest()->setPath(edge); // set the predecessor of v to u; in this case the edge from u to v
+bool drivingRelax(Edge<T> *edge) {
+    if (edge->getOrig()->getDist() + edge->getDriving() < edge->getDest()->getDist()) {
+        edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getDriving());
+        edge->getDest()->setPath(edge);
         return true;
     }
     return false;
 }
 
+// Relax an edge for walking routes, updating destination vertex if a shorter path is found
+// @param edge Pointer to the edge to be relaxed
 template <class T>
 bool walkingRelax(Edge<T> *edge) {
-    if (edge->getOrig()->getDist() + edge->getWalking() < edge->getDest()->getDist()) { // we have found a better way to reach v
-        edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getWalking()); // d[v] = d[u] + w(u,v)
-        edge->getDest()->setPath(edge); // set the predecessor of v to u; in this case the edge from u to v
+    if (edge->getOrig()->getDist() + edge->getWalking() < edge->getDest()->getDist()) {
+        edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getWalking());
+        edge->getDest()->setPath(edge);
         return true;
     }
     return false;
 }
 
+// Mark specific edges as avoided based on given segment pairs
+// @param g Pointer to the graph
+// @param avoidSegments Vector of vertex pairs to avoid
 inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& avoidSegments) {
     for (auto v : g->getVertexSet()) {
         for (auto e : v->getAdj()) {
-            e->setAvoid(false); 
+            e->setAvoid(false);
         }
     }
 
@@ -50,6 +57,12 @@ inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& av
     }
 }
 
+// Implement Dijkstra's shortest path algorithm with options to avoid nodes and edges
+// @param g Pointer to the graph
+// @param origin Starting vertex ID
+// @param avoidNodes Vector of vertex IDs to avoid
+// @param avoidSegments Vector of vertex pairs to avoid
+// @param isWalking Flag to determine walking (true) or driving (false) route
 template <class T>
 void Dijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}, bool isWalking = false) {
     for(auto v : g->getVertexSet()) {
@@ -101,6 +114,10 @@ void Dijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {
     }
 }
 
+// Reconstruct the shortest path between origin and destination vertices
+// @param g Pointer to the graph
+// @param origin Starting vertex ID
+// @param dest Destination vertex ID
 template <class T>
 static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) {
     std::vector<T> res;
