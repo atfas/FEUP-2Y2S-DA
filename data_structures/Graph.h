@@ -24,7 +24,6 @@ public:
     std::vector<Edge<T> *> getAdj() const;
     bool isVisited() const;
     bool isParking() const;
-    bool isAvoid() const;
     double getDist() const;
     Edge<T> *getPath() const;
     std::vector<Edge<T> *> getIncoming() const;
@@ -48,7 +47,6 @@ protected:
     // auxiliary fields
     bool visited = false; // used by DFS, BFS, Prim ...
     bool parking = false;
-    bool avoid = false;
     double dist = 0;
     Edge<T> *path = nullptr;
 
@@ -219,12 +217,6 @@ bool Vertex<T>::isParking() const {
 }
 
 template <class T>
-bool Vertex<T>::isAvoid() const {
-    return this->avoid;
-}
-
-
-template <class T>
 double Vertex<T>::getDist() const {
     return this->dist;
 }
@@ -257,11 +249,6 @@ void Vertex<T>::setDist(double dist) {
 template <class T>
 void Vertex<T>::setPath(Edge<T> *path) {
     this->path = path;
-}
-
-template <class T>
-void Vertex<T>::setAvoid(bool avoid){
-    this->avoid = avoid;
 }
 
 template <class T>
