@@ -8,27 +8,37 @@
 #include "data_structures/Graph.h"
 #include "data_handler/data_handler.h"
 #include "data_handler/csv_file.h"
+#include "input_handler/input_handler.h"
 
 Graph<int> graph;
 
-
+// Display initial menu for graph and data input selection
 void startMenu() {
     std::string option, graphstr;
 
-    std::cout<<"INDIVIDUAL ROUTE PLANNING TOOL"<<std::endl;
-    std::cout<<""<<std::endl;
-    std::cout <<"Which graph would you like?(csv/simplified):";
+    std::cout << "========================================" << std::endl;
+    std::cout << "  INDIVIDUAL ROUTE PLANNING TOOL" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Select Graph Type:" << std::endl;
+    std::cout << "  1. CSV Graph" << std::endl;
+    std::cout << "  2. Simplified Graph" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Enter graph type (csv/simplified): ";
     getline(std::cin, graphstr);
 
-    if (graphstr == "csv") createGraph(graph,"Locations.csv", "Distances.csv");
+    if (graphstr == "csv") createGraph(graph, "Locations.csv", "Distances.csv");
     if (graphstr == "simplified") createGraph(graph, "LocationsSimplified.csv", "DistancesSimplified.csv");
 
-    std::cout<<"Which option would you like to use?"<<std::endl;
-    std::cout<<""<<std::endl;
-    std::cout<<"Read the data from input"<<std::endl;
-    std::cout<<"Read the data from a file"<<std::endl;
-    std::cout<<""<<std::endl;
-    std::cout<<"Option(file or input):";
+    std::cout << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "           DATA INPUT OPTIONS" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "  1. Read data from input" << std::endl;
+    std::cout << "  2. Read data from a file" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Enter option (file/input): ";
 
     getline(std::cin, option);
 
@@ -44,8 +54,12 @@ void startMenu() {
     else{
         std::cout<<"Invalid input"<<std::endl;
     }
+
+    std::cout << "========================================" << std::endl;
+
 }
 
+// Entry point of the application, initiates the start menu
 int main(){
     startMenu();
     return 0;

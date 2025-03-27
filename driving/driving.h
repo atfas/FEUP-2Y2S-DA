@@ -2,6 +2,10 @@
 #define DRIVING_H
 #include <string>
 #include <vector>
+#include "../Dijkstra.h"
+#include "../data_structures/Graph.h"
+#include "../data_handler/data_handler.h"
+#include "../output_handler/output_handler.h"
 
 
 
