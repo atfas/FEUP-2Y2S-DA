@@ -8,6 +8,7 @@
 #include "data_structures/Graph.h"
 #include "data_handler/data_handler.h"
 #include "data_handler/csv_file.h"
+#include "input_handler/input_handler.h"
 
 Graph<int> graph;
 

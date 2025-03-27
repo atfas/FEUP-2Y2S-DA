@@ -1,11 +1,14 @@
+#ifndef DIJKSTRA_H
+#define DIJKSTRA_H
+
 #include "data_structures/Graph.h"
+#include <vector>
+#include <algorithm>
+#include <iostream>
 
-using namespace std;
-
-// Relax an edge for driving routes, updating destination vertex if a shorter path is found
-// @param edge Pointer to the edge to be relaxed
-template <class T>
-bool drivingRelax(Edge<T> *edge) {
+// Template function declarations
+template<class T>
+bool drivingRelax(Edge<T>* edge) {
     if (edge->getOrig()->getDist() + edge->getDriving() < edge->getDest()->getDist()) {
         edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getDriving());
         edge->getDest()->setPath(edge);
@@ -14,10 +17,8 @@ bool drivingRelax(Edge<T> *edge) {
     return false;
 }
 
-// Relax an edge for walking routes, updating destination vertex if a shorter path is found
-// @param edge Pointer to the edge to be relaxed
-template <class T>
-bool walkingRelax(Edge<T> *edge) {
+template<class T>
+bool walkingRelax(Edge<T>* edge) {
     if (edge->getOrig()->getDist() + edge->getWalking() < edge->getDest()->getDist()) {
         edge->getDest()->setDist(edge->getOrig()->getDist() + edge->getWalking());
         edge->getDest()->setPath(edge);
@@ -26,9 +27,6 @@ bool walkingRelax(Edge<T> *edge) {
     return false;
 }
 
-// Mark specific edges as avoided based on given segment pairs
-// @param g Pointer to the graph
-// @param avoidSegments Vector of vertex pairs to avoid
 inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& avoidSegments) {
     for (auto v : g->getVertexSet()) {
         for (auto e : v->getAdj()) {
@@ -36,12 +34,11 @@ inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& av
         }
     }
 
-    for (auto pair:avoidSegments) {
-
+    for (auto pair : avoidSegments) {
         Vertex<int>* srcVertex1 = g->findVertex(pair.first);
         Vertex<int>* srcVertex2 = g->findVertex(pair.second);
 
-        if (!srcVertex1 || !srcVertex2) {continue;}
+        if (!srcVertex1 || !srcVertex2) { continue; }
 
         for (auto edge : srcVertex1->getAdj()) {
             if (edge->getDest()->getInfo() == pair.second) {
@@ -57,23 +54,12 @@ inline void avoidEdges(Graph<int>* g, const std::vector<std::pair<int, int>>& av
     }
 }
 
-// Implement Dijkstra's shortest path algorithm with options to avoid nodes and edges
-// @param g Pointer to the graph
-// @param origin Starting vertex ID
-// @param avoidNodes Vector of vertex IDs to avoid
-// @param avoidSegments Vector of vertex pairs to avoid
-// @param isWalking Flag to determine walking (true) or driving (false) route
 template <class T>
-void Dijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}, bool isWalking = false) {
-    for(auto v : g->getVertexSet()) {
+void Dijkstra(Graph<T>* g, const int& origin, const std::vector<int>& avoidNodes = {}, const std::vector<std::pair<int, int>>& avoidSegments = {}, bool isWalking = false) {
+    for (auto v : g->getVertexSet()) {
         v->setDist(INF);
         v->setPath(nullptr);
-
-        if (std::find(avoidNodes.begin(), avoidNodes.end(), v->getInfo()) != avoidNodes.end()) {
-            v->setVisited(true);
-        } else {
-            v->setVisited(false);
-        }
+        v->setVisited(std::find(avoidNodes.begin(), avoidNodes.end(), v->getInfo()) != avoidNodes.end());
     }
 
     avoidEdges(g, avoidSegments);
@@ -85,22 +71,17 @@ void Dijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {
     MutablePriorityQueue<Vertex<T>> q;
     q.insert(s);
 
-    while(!q.empty()) {
+    while (!q.empty()) {
         auto v = q.extractMin();
-
         if (v->isVisited()) continue;
-
         v->setVisited(true);
 
-        for(auto e : v->getAdj()) {
+        for (auto e : v->getAdj()) {
             if (e->getAvoid()) continue;
-
             auto dest = e->getDest();
-
             if (dest->isVisited()) continue;
 
             auto oldDist = dest->getDist();
-
             bool relaxed = isWalking ? walkingRelax(e) : drivingRelax(e);
 
             if (relaxed) {
@@ -114,26 +95,20 @@ void Dijkstra(Graph<T> * g, const int &origin, const vector<int>& avoidNodes = {
     }
 }
 
-// Reconstruct the shortest path between origin and destination vertices
-// @param g Pointer to the graph
-// @param origin Starting vertex ID
-// @param dest Destination vertex ID
 template <class T>
-static std::vector<T> getPath(Graph<T> * g, const int &origin, const int &dest) {
+std::vector<T> getPath(Graph<T>* g, const int& origin, const int& dest) {
     std::vector<T> res;
     auto v = g->findVertex(dest);
-    if (v == nullptr || v->getDist() == INF) { // missing or disconnected
-        return res;
+    if (!v || v->getDist() == INF) return res;
 
-    }
-    res.push_back(v->getInfo());
-    while(v->getPath() != nullptr) {
-        v = v->getPath()->getOrig();
+    while (v) {
         res.push_back(v->getInfo());
+        v = (v->getPath()) ? v->getPath()->getOrig() : nullptr;
     }
-    reverse(res.begin(), res.end());
-    if(res.empty() || res[0] != origin) {
-        std::cout << "Origin not found!!" << std::endl;
-    }
+
+    std::reverse(res.begin(), res.end());
+    if (res.empty() || res[0] != origin) std::cout << "Origin not found!!" << std::endl;
     return res;
 }
+
+#endif // DIJKSTRA_H

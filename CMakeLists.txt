@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(DA_Project_1 main.cpp
         data_structures/Graph.h
-        Dijkstra.cpp
         data_structures/MutablePriorityQueue.h
         data_handler/data_handler.cpp
         data_handler/data_handler.h
@@ -15,4 +14,9 @@ add_executable(DA_Project_1 main.cpp
         drivingwalking/drivingwalking.cpp
         data_handler/csv_file.cpp
         data_handler/csv_file.h
+        input_handler/input_handler.cpp
+        input_handler/input_handler.h
+        output_handler/output_handler.cpp
+        output_handler/output_handler.h
+        Dijkstra.h
 )
