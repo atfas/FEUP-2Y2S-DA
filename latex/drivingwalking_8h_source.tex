@@ -1,0 +1,20 @@
+\doxysection{drivingwalking.\+h}
+\hypertarget{drivingwalking_8h_source}{}\label{drivingwalking_8h_source}\index{drivingwalking/drivingwalking.h@{drivingwalking/drivingwalking.h}}
+\mbox{\hyperlink{drivingwalking_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ DRIVINGWALKING\_H}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ DRIVINGWALKING\_H}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{data__handler_8h}{../data\_handler/data\_handler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Dijkstra_8h}{../Dijkstra.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{output__handler_8h}{../output\_handler/output\_handler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00010}00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{drivingwalking_8h_aaf7cc856a9b3529bb763675abb04eef3}{drivingWalking}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ maxWalkTime,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00011}00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{drivingwalking_8h_a05a8a5a72d3607771c92b93543620acc}{drivingWalkingApprox}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00012}00012\ std::vector<std::pair<Path,Path>>\ \mbox{\hyperlink{drivingwalking_8h_a9eb9b1d756fee8ab6d88ea9744a45be1}{findPaths}}\ (\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ maxWalkTime,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00013}00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{drivingwalking_8h_a166c18fddc13754c527a9dd3e52399ac}{drivingWalkingOutput}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ parkingNode,\ \mbox{\hyperlink{structPath}{Path}}\&\ drivingPath,\ \mbox{\hyperlink{structPath}{Path}}\&\ walkingPath,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments,\ \textcolor{keywordtype}{int}\ maxWalkTime);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8h_source_l00014}00014\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

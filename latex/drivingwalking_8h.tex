@@ -1,0 +1,102 @@
+\doxysection{drivingwalking/drivingwalking.h File Reference}
+\hypertarget{drivingwalking_8h}{}\label{drivingwalking_8h}\index{drivingwalking/drivingwalking.h@{drivingwalking/drivingwalking.h}}
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include "{}../data\+\_\+handler/data\+\_\+handler.\+h"{}}\newline
+{\ttfamily \#include "{}../\+Dijkstra.\+h"{}}\newline
+{\ttfamily \#include "{}../output\+\_\+handler/output\+\_\+handler.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{drivingwalking_8h_aaf7cc856a9b3529bb763675abb04eef3}{driving\+Walking}} (int source, int destination, int max\+Walk\+Time, const std\+::vector$<$ int $>$ \&avoid\+Nodes, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments)
+\item 
+void \mbox{\hyperlink{drivingwalking_8h_a05a8a5a72d3607771c92b93543620acc}{driving\+Walking\+Approx}} (int source, int destination, const std\+::vector$<$ int $>$ \&avoid\+Nodes, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments)
+\item 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{structPath}{Path}}, \mbox{\hyperlink{structPath}{Path}} $>$ $>$ \mbox{\hyperlink{drivingwalking_8h_a9eb9b1d756fee8ab6d88ea9744a45be1}{find\+Paths}} (int source, int destination, int max\+Walk\+Time, const std\+::vector$<$ int $>$ \&avoid\+Nodes, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments)
+\item 
+void \mbox{\hyperlink{drivingwalking_8h_a166c18fddc13754c527a9dd3e52399ac}{driving\+Walking\+Output}} (int source, int destination, int parking\+Node, \mbox{\hyperlink{structPath}{Path}} \&driving\+Path, \mbox{\hyperlink{structPath}{Path}} \&walking\+Path, const std\+::vector$<$ int $>$ \&avoid\+Nodes, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments, int max\+Walk\+Time)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{drivingwalking_8h_aaf7cc856a9b3529bb763675abb04eef3}\index{drivingwalking.h@{drivingwalking.h}!drivingWalking@{drivingWalking}}
+\index{drivingWalking@{drivingWalking}!drivingwalking.h@{drivingwalking.h}}
+\doxysubsubsection{\texorpdfstring{drivingWalking()}{drivingWalking()}}
+{\footnotesize\ttfamily \label{drivingwalking_8h_aaf7cc856a9b3529bb763675abb04eef3} 
+void driving\+Walking (\begin{DoxyParamCaption}\item[{int}]{source}{, }\item[{int}]{destination}{, }\item[{int}]{max\+Walk\+Time}{, }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+Nodes}{ = {\ttfamily \{\}}, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+Computes the best driving and walking route with a maximum walking time constraint 
+\begin{DoxyParams}{Parameters}
+{\em source} & Starting node ID \\
+\hline
+{\em destination} & Ending node ID \\
+\hline
+{\em max\+Walk\+Time} & Maximum time allowed for walking \\
+\hline
+{\em avoid\+Nodes} & List of nodes to avoid in routing \\
+\hline
+{\em avoid\+Segments} & List of road segments to avoid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{drivingwalking_8cpp_source_l00078}{78}} of file \mbox{\hyperlink{drivingwalking_8cpp_source}{drivingwalking.\+cpp}}.
+
+\Hypertarget{drivingwalking_8h_a05a8a5a72d3607771c92b93543620acc}\index{drivingwalking.h@{drivingwalking.h}!drivingWalkingApprox@{drivingWalkingApprox}}
+\index{drivingWalkingApprox@{drivingWalkingApprox}!drivingwalking.h@{drivingwalking.h}}
+\doxysubsubsection{\texorpdfstring{drivingWalkingApprox()}{drivingWalkingApprox()}}
+{\footnotesize\ttfamily \label{drivingwalking_8h_a05a8a5a72d3607771c92b93543620acc} 
+void driving\+Walking\+Approx (\begin{DoxyParamCaption}\item[{int}]{source}{, }\item[{int}]{destination}{, }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+Nodes}{, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{}\end{DoxyParamCaption})}
+
+Computes approximation of two best driving and walking routes 
+\begin{DoxyParams}{Parameters}
+{\em source} & Starting node ID \\
+\hline
+{\em destination} & Ending node ID \\
+\hline
+{\em avoid\+Nodes} & List of nodes to avoid in routing \\
+\hline
+{\em avoid\+Segments} & List of road segments to avoid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{drivingwalking_8cpp_source_l00097}{97}} of file \mbox{\hyperlink{drivingwalking_8cpp_source}{drivingwalking.\+cpp}}.
+
+\Hypertarget{drivingwalking_8h_a166c18fddc13754c527a9dd3e52399ac}\index{drivingwalking.h@{drivingwalking.h}!drivingWalkingOutput@{drivingWalkingOutput}}
+\index{drivingWalkingOutput@{drivingWalkingOutput}!drivingwalking.h@{drivingwalking.h}}
+\doxysubsubsection{\texorpdfstring{drivingWalkingOutput()}{drivingWalkingOutput()}}
+{\footnotesize\ttfamily \label{drivingwalking_8h_a166c18fddc13754c527a9dd3e52399ac} 
+void driving\+Walking\+Output (\begin{DoxyParamCaption}\item[{int}]{source}{, }\item[{int}]{destination}{, }\item[{int}]{parking\+Node}{, }\item[{\mbox{\hyperlink{structPath}{Path}} \&}]{driving\+Path}{, }\item[{\mbox{\hyperlink{structPath}{Path}} \&}]{walking\+Path}{, }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+Nodes}{, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{, }\item[{int}]{max\+Walk\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{drivingwalking_8cpp_source_l00115}{115}} of file \mbox{\hyperlink{drivingwalking_8cpp_source}{drivingwalking.\+cpp}}.
+
+\Hypertarget{drivingwalking_8h_a9eb9b1d756fee8ab6d88ea9744a45be1}\index{drivingwalking.h@{drivingwalking.h}!findPaths@{findPaths}}
+\index{findPaths@{findPaths}!drivingwalking.h@{drivingwalking.h}}
+\doxysubsubsection{\texorpdfstring{findPaths()}{findPaths()}}
+{\footnotesize\ttfamily \label{drivingwalking_8h_a9eb9b1d756fee8ab6d88ea9744a45be1} 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{structPath}{Path}}, \mbox{\hyperlink{structPath}{Path}} $>$ $>$ find\+Paths (\begin{DoxyParamCaption}\item[{int}]{source}{, }\item[{int}]{destination}{, }\item[{int}]{max\+Walk\+Time}{, }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+Nodes}{ = {\ttfamily \{\}}, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+Finds paths combining driving and walking routes 
+\begin{DoxyParams}{Parameters}
+{\em source} & Starting node ID \\
+\hline
+{\em destination} & Ending node ID \\
+\hline
+{\em max\+Walk\+Time} & Maximum time allowed for walking \\
+\hline
+{\em avoid\+Nodes} & List of nodes to avoid in routing \\
+\hline
+{\em avoid\+Segments} & List of road segments to avoid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of driving and walking path pairs 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{drivingwalking_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{drivingwalking_8cpp_source}{drivingwalking.\+cpp}}.
+

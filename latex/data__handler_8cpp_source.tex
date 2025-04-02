@@ -1,0 +1,132 @@
+\doxysection{data\+\_\+handler.\+cpp}
+\hypertarget{data__handler_8cpp_source}{}\label{data__handler_8cpp_source}\index{data\_handler/data\_handler.cpp@{data\_handler/data\_handler.cpp}}
+\mbox{\hyperlink{data__handler_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Graph_8h}{../data\_structures/Graph.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{data__handler_8h}{data\_handler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{driving_8h}{../driving/driving.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{drivingwalking_8h}{../drivingwalking/drivingwalking.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00007}00007\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classGraph}{Graph<int>}}\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00009}00009\ \textcolor{comment}{//\ Parses\ avoid\ segments\ from\ input\ string\ into\ vector\ of\ integer\ pairs}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00010}\mbox{\hyperlink{data__handler_8cpp_a484845b1be9fed2acbcd2c971753fda7}{00010}}\ std::vector<std::pair<int,\ int>>\ \mbox{\hyperlink{data__handler_8cpp_a484845b1be9fed2acbcd2c971753fda7}{parseAvoidSegments}}(\textcolor{keyword}{const}\ std::string\&\ avoidSegmentsInput)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00011}00011\ \ \ \ \ std::vector<std::pair<std::string,\ std::string>>\ avoidSegmentsString;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00012}00012\ \ \ \ \ std::vector<std::pair<std::string,\ std::string>>\ segments;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00013}00013\ \ \ \ \ std::vector<std::pair<int,\ int>>\ avoidSegments;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00015}00015\ \ \ \ \ std::stringstream\ ssSegments(avoidSegmentsInput);}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00016}00016\ \ \ \ \ std::string\ segment;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(ssSegments,\ segment,\ \textcolor{charliteral}{')'}))\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (segment.empty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ std::stringstream\ segStream(segment.substr(1));\ \textcolor{comment}{//\ Remove\ the\ '('}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ std::string\ first,\ second;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ std::getline(segStream,\ first,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ std::getline(segStream,\ second,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >\ 0)\ first\ =\ first.substr(1,\ first.size()\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ avoidSegmentsString.emplace\_back(first,\ second);}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ avoidSegmentsString)\{\ avoidSegments.emplace\_back(stoi(pair.first),\ stoi(pair.second));\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ avoidSegments;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00038}00038\ \textcolor{comment}{//\ Creates\ a\ path\ from\ a\ vector\ of\ nodes,\ with\ optional\ reversal}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00039}\mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{00039}}\ \mbox{\hyperlink{structPath}{Path}}\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(std::vector<int>\ \&path,\ \textcolor{keywordtype}{bool}\ reverse)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (path.empty())\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structPath}{Path}}();}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<int>}}*\ lastVertext;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (reverse)\ lastVertext\ =\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}.findVertex(path.front());}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{else}\ lastVertext\ =\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}.findVertex(path.back());}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00047}00047\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ newPath\ =\ \mbox{\hyperlink{structPath}{Path}}(path,\ lastVertext-\/>\mbox{\hyperlink{classVertex_a01e90e3cdb2ee11dd3b1d593c8207382}{getDist}}());}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{return}\ newPath;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00051}00051\ \textcolor{comment}{//\ Merges\ two\ paths\ that\ share\ a\ common\ node}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00052}\mbox{\hyperlink{data__handler_8cpp_a8b740256f18e55d3513c9980a2cff19b}{00052}}\ \mbox{\hyperlink{structPath}{Path}}\ \mbox{\hyperlink{data__handler_8cpp_a8b740256f18e55d3513c9980a2cff19b}{mergePaths}}(\mbox{\hyperlink{structPath}{Path}}\ firstPath,\ \mbox{\hyperlink{structPath}{Path}}\ secondPath)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ result;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (firstPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[firstPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().size()-\/1]\ ==\ secondPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[0])\{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ std::vector<int>\ newRoute\ =\ firstPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}();}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ secondPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().size();\ i++)\ \{\ newRoute.push\_back(secondPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[i]);\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{structPath_ace6023e92b6513104b5f0c16327cd2f0}{setRoute}}(newRoute);}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{structPath_a79e60248c823502c2114d917aa0be829}{setDistance}}(firstPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ +\ secondPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}());}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00065}00065\ \textcolor{comment}{//\ Writes\ path\ to\ terminal\ output}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00066}\mbox{\hyperlink{data__handler_8cpp_a38fb011586e4c9f4569d14424d74e3f8}{00066}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{data__handler_8cpp_a38fb011586e4c9f4569d14424d74e3f8}{writePathTerminal}}(\mbox{\hyperlink{structPath}{Path}}\ \&path)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().empty())\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ std::cout<<\ \textcolor{stringliteral}{"{}none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().size();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ std::cout\ <<\ path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[i];}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().size()\ -\/\ 1)\ \{\ std::cout\ <<\ \textcolor{stringliteral}{"{},"{}};\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00076}00076\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ path.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ <<\ \textcolor{stringliteral}{"{})"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00077}00077\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00079}00079\ \textcolor{comment}{//\ Writes\ path\ to\ file\ output}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00080}\mbox{\hyperlink{data__handler_8cpp_ac9fe8567287a195a55d85ce94ac449fd}{00080}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{data__handler_8cpp_ac9fe8567287a195a55d85ce94ac449fd}{writePathToFile}}(std::ofstream\&\ file,\ \mbox{\hyperlink{structPath}{Path}}\ \&path)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().empty())\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}none\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().size();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ file\ <<\ path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[i];}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ path.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().size()\ -\/\ 1)\ \{\ file\ <<\ \textcolor{stringliteral}{"{},"{}};\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00092}00092\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}\ ("{}}\ <<\ path.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00093}00093\ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00095}00095\ \textcolor{comment}{//\ Generates\ message\ for\ route\ impossibility\ scenarios}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00096}\mbox{\hyperlink{data__handler_8cpp_ad0e9c62eca3f73e8be4ca90935304caf}{00096}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{data__handler_8cpp_ad0e9c62eca3f73e8be4ca90935304caf}{messageOutput}}(std::string\&\ message,\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ maxWalkTime,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes\ =\ \{\},\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments\ =\ \{\})\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keyword}{auto}\ paths\_maxTime\ =\ \mbox{\hyperlink{drivingwalking_8cpp_a341146967330b2acb11764b1ffd34688}{findPaths}}(source,\ destination,\ 999999,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00099}00099\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ drivingPath\_maxTime\ =\ paths\_maxTime[0].first;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00100}00100\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ walkingPath\_maxTime\ =\ paths\_maxTime[0].second;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00102}00102\ \ \ \ \ \textcolor{keywordtype}{int}\ parkingNode1\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (!walkingPath\_maxTime.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().empty())\ parkingNode1\ =\ walkingPath\_maxTime.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[0];}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{if}\ (avoidNodes.empty()\ \&\&\ avoidSegments.empty()\ ||\ parkingNode1\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}No\ possible\ route\ with\ max.\ walking\ time\ of\ "{}}\ +\ std::to\_string(maxWalkTime)\ +\ \textcolor{stringliteral}{"{}\ minutes."{}};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keyword}{auto}\ paths\_blocked\ =\ \mbox{\hyperlink{drivingwalking_8cpp_a341146967330b2acb11764b1ffd34688}{findPaths}}(source,\ destination,\ maxWalkTime,\ \{\},\ \{\});}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00113}00113\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ drivingPath\_blocked\ =\ paths\_blocked[0].first;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00114}00114\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ walkingPath\_blocked\ =\ paths\_blocked[0].second;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{keywordtype}{int}\ parkingNode2\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (!walkingPath\_blocked.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().empty())\ parkingNode2\ =\ walkingPath\_blocked.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[0];}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (parkingNode2\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}No\ possible\ route\ avoiding\ the\ restricted\ nodes\ and\ edges."{}};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00125}00125\ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}No\ possible\ route\ with\ max.\ walking\ time\ of\ "{}}\ +\ std::to\_string(maxWalkTime)\ +\ \textcolor{stringliteral}{"{}\ minutes\ and\ avoiding\ the\ restricted\ nodes\ and\ edges."{}};}
+\DoxyCodeLine{\Hypertarget{data__handler_8cpp_source_l00126}00126\ \}}
+
+\end{DoxyCode}

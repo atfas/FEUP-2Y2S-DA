@@ -1,0 +1,71 @@
+\doxysection{driving/driving.cpp File Reference}
+\hypertarget{driving_8cpp}{}\label{driving_8cpp}\index{driving/driving.cpp@{driving/driving.cpp}}
+{\ttfamily \#include "{}driving.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{driving_8cpp_a641c5940240416ffae83aaccbea17093}{independent\+Driving}} (int source, int destination)
+\item 
+void \mbox{\hyperlink{driving_8cpp_a40b628011c8118f5fde82d1a05f00b84}{restricted\+Driving}} (int source, int destination, const std\+::vector$<$ int $>$ \&avoid\+Nodes, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments, const std\+::string \&include\+Node)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \mbox{\hyperlink{driving_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{driving_8cpp_a641c5940240416ffae83aaccbea17093}\index{driving.cpp@{driving.cpp}!independentDriving@{independentDriving}}
+\index{independentDriving@{independentDriving}!driving.cpp@{driving.cpp}}
+\doxysubsubsection{\texorpdfstring{independentDriving()}{independentDriving()}}
+{\footnotesize\ttfamily \label{driving_8cpp_a641c5940240416ffae83aaccbea17093} 
+void independent\+Driving (\begin{DoxyParamCaption}\item[{int}]{source}{, }\item[{int}]{destination}{}\end{DoxyParamCaption})}
+
+Finds the primary route and an alternative route with no shared intermediate nodes 
+\begin{DoxyParams}{Parameters}
+{\em source} & Starting node ID \\
+\hline
+{\em destination} & Ending node ID \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{driving_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{driving_8cpp_source}{driving.\+cpp}}.
+
+\Hypertarget{driving_8cpp_a40b628011c8118f5fde82d1a05f00b84}\index{driving.cpp@{driving.cpp}!restrictedDriving@{restrictedDriving}}
+\index{restrictedDriving@{restrictedDriving}!driving.cpp@{driving.cpp}}
+\doxysubsubsection{\texorpdfstring{restrictedDriving()}{restrictedDriving()}}
+{\footnotesize\ttfamily \label{driving_8cpp_a40b628011c8118f5fde82d1a05f00b84} 
+void restricted\+Driving (\begin{DoxyParamCaption}\item[{int}]{source}{, }\item[{int}]{destination}{, }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+Nodes}{, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{, }\item[{const std\+::string \&}]{include\+Node}{}\end{DoxyParamCaption})}
+
+Computes route with optional restrictions like avoiding nodes/segments or including a specific node 
+\begin{DoxyParams}{Parameters}
+{\em source} & Starting node ID \\
+\hline
+{\em destination} & Ending node ID \\
+\hline
+{\em avoid\+Nodes} & List of nodes to avoid in routing \\
+\hline
+{\em avoid\+Segments} & List of road segments to avoid \\
+\hline
+{\em include\+Node} & Optional node that must be included in the route \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{driving_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{driving_8cpp_source}{driving.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{driving_8cpp_a3ff123a23072cf84d8002b79510ca219}\index{driving.cpp@{driving.cpp}!graph@{graph}}
+\index{graph@{graph}!driving.cpp@{driving.cpp}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily \label{driving_8cpp_a3ff123a23072cf84d8002b79510ca219} 
+\mbox{\hyperlink{classGraph}{Graph}}$<$int$>$ graph\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+

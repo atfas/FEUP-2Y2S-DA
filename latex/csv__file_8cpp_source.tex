@@ -1,0 +1,89 @@
+\doxysection{csv\+\_\+file.\+cpp}
+\hypertarget{csv__file_8cpp_source}{}\label{csv__file_8cpp_source}\index{data\_handler/csv\_file.cpp@{data\_handler/csv\_file.cpp}}
+\mbox{\hyperlink{csv__file_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{csv__file_8h}{csv\_file.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00003}\mbox{\hyperlink{csv__file_8cpp_a6f5095131bb7d0386a4b156d03da97fe}{00003}}\ std::unordered\_map<std::string,\ LocationData>\ \mbox{\hyperlink{csv__file_8cpp_a6f5095131bb7d0386a4b156d03da97fe}{readLocations}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00004}00004\ \ \ \ \ std::unordered\_map<std::string,\ LocationData>\ locations;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00005}00005\ \ \ \ \ std::ifstream\ file(filename);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00006}00006\ \ \ \ \ std::string\ line,\ location,\ code;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{bool}\ parking;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ file:\ "{}}\ <<\ filename\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ locations;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00013}00013\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00015}00015\ \ \ \ \ std::getline(file,\ line);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ std::stringstream\ ss(line);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ std::getline(ss,\ location,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ ss\ >>\ id;\ ss.ignore();}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ std::getline(ss,\ code,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ ss\ >>\ parking;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ locations[code]\ =\ \mbox{\hyperlink{classLocationData}{LocationData}}(\textcolor{keywordtype}{id},\ code,\ parking);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00027}00027\ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{return}\ locations;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00032}\mbox{\hyperlink{csv__file_8cpp_ae3f3b169bfb5afdcfa8cfa2b7c258324}{00032}}\ std::vector<EdgeData>\ \mbox{\hyperlink{csv__file_8cpp_ae3f3b169bfb5afdcfa8cfa2b7c258324}{readEdges}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00033}00033\ \ \ \ \ std::vector<EdgeData>\ edges;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00034}00034\ \ \ \ \ std::ifstream\ file(filename);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00035}00035\ \ \ \ \ std::string\ line,\ loc1,\ loc2,\ drivingStr,\ walkingStr;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{double}\ driving,\ walking;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ file:\ "{}}\ <<\ filename\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ edges;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00043}00043\ \ \ \ \ std::getline(file,\ line);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ std::stringstream\ ss(line);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ std::getline(ss,\ loc1,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ std::getline(ss,\ loc2,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ std::getline(ss,\ drivingStr,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ std::getline(ss,\ walkingStr,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ "{}X"{}\ case\ for\ driving\ distance}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ driving\ =\ (drivingStr\ ==\ \textcolor{stringliteral}{"{}X"{}})\ ?\ \mbox{\hyperlink{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}}\ :\ std::stod(drivingStr);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ walking\ =\ std::stod(walkingStr);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ edges.emplace\_back(loc1,\ loc2,\ driving,\ walking);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00058}00058\ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{return}\ edges;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00063}\mbox{\hyperlink{csv__file_8cpp_a7b35a3c74172d20724ae400ce141d712}{00063}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{csv__file_8cpp_a7b35a3c74172d20724ae400ce141d712}{createGraph}}(\mbox{\hyperlink{classGraph}{Graph<int>}}\&\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ \textcolor{keyword}{const}\ std::string\&\ locationsFile,\ \textcolor{keyword}{const}\ std::string\&\ edgesFile)\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00064}00064\ \ \ \ \ std::unordered\_map<std::string,\ LocationData>\ locations\ =\ \mbox{\hyperlink{csv__file_8cpp_a6f5095131bb7d0386a4b156d03da97fe}{readLocations}}(locationsFile);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00065}00065\ \ \ \ \ std::vector<EdgeData>\ edges\ =\ \mbox{\hyperlink{csv__file_8cpp_ae3f3b169bfb5afdcfa8cfa2b7c258324}{readEdges}}(edgesFile);}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00066}00066\ \ \ \ \ std::unordered\_map<std::string,\ int>\ locationToId;}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [location,\ data]\ :\ locations)\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ locationToId[location]\ =\ data.getId();}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}.addVertex(data.getId());}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<int>}}*\ vertex\ =\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}.findVertex(data.getId());}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vertex)\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ vertex-\/>\mbox{\hyperlink{classVertex_a7095970436a0476eb518786d1948c618}{setParking}}(data.hasParking());}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ edge\ :\ edges)\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id1\ =\ locationToId[edge.getLocation1()];}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id2\ =\ locationToId[edge.getLocation2()];}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}.addEdge(id1,\ id2,\ edge.getDrivingTime(),\ edge.getWalkingTime());}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00082}00082\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8cpp_source_l00083}00083\ }
+
+\end{DoxyCode}

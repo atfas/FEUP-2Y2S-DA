@@ -1,0 +1,185 @@
+\doxysection{input\+\_\+handler.\+cpp}
+\hypertarget{input__handler_8cpp_source}{}\label{input__handler_8cpp_source}\index{input\_handler/input\_handler.cpp@{input\_handler/input\_handler.cpp}}
+\mbox{\hyperlink{input__handler_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{input__handler_8h}{input\_handler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00005}\mbox{\hyperlink{input__handler_8cpp_a506d56ab08100dd2a83005588535407f}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input__handler_8cpp_a506d56ab08100dd2a83005588535407f}{drivingIndependentInput}}()\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00006}00006\ \ \ \ \ std::string\ source,\ destination;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00008}00008\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Source:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00009}00009\ \ \ \ \ std::getline(std::cin,\ source);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00011}00011\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Destination:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00012}00012\ \ \ \ \ std::getline(std::cin,\ destination);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00014}00014\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00015}00015\ \ \ \ \ \mbox{\hyperlink{driving_8cpp_a641c5940240416ffae83aaccbea17093}{independentDriving}}(stoi(source),\ stoi(destination));}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00016}00016\ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00018}00018\ \textcolor{comment}{//\ Handles\ interactive\ input\ for\ restricted\ driving\ route\ planning}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00019}\mbox{\hyperlink{input__handler_8cpp_ac90d3b8d2def4bff9cbe5651cbb3d6e6}{00019}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input__handler_8cpp_ac90d3b8d2def4bff9cbe5651cbb3d6e6}{drivingRestrictedInput}}()\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00020}00020\ \ \ \ \ std::string\ source,\ destination,\ avoidNodesInput,\ avoidSegmentsInput,\ includeNode;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00021}00021\ \ \ \ \ std::vector<std::string>\ avoidNodesString;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00022}00022\ \ \ \ \ std::vector<int>\ avoidNodes;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00024}00024\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Source:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00025}00025\ \ \ \ \ std::getline(std::cin,\ source);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00027}00027\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Destination:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00028}00028\ \ \ \ \ std::getline(std::cin,\ destination);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00030}00030\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}AvoidNodes:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00031}00031\ \ \ \ \ std::getline(std::cin,\ avoidNodesInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00033}00033\ \ \ \ \ std::stringstream\ ss(avoidNodesInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00034}00034\ \ \ \ \ std::string\ node;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(ss,\ node,\ \textcolor{charliteral}{','}))\ \{\ avoidNodesString.push\_back(node);\ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ avoidNodesString)\{\ avoidNodes.push\_back(stoi(i));\ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00040}00040\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}AvoidSegments:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00041}00041\ \ \ \ \ std::getline(std::cin,\ avoidSegmentsInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00042}00042\ \ \ \ \ std::vector<std::pair<int,\ int>>\ avoidSegments\ =\ \mbox{\hyperlink{data__handler_8cpp_a484845b1be9fed2acbcd2c971753fda7}{parseAvoidSegments}}(avoidSegmentsInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00044}00044\ \ \ \ \ std::cout\ <<\textcolor{stringliteral}{"{}IncludeNode:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00045}00045\ \ \ \ \ std::getline(std::cin,\ includeNode);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00047}00047\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{driving_8cpp_a40b628011c8118f5fde82d1a05f00b84}{restrictedDriving}}(stoi(source),\ stoi(destination),\ avoidNodes,\ avoidSegments,\ includeNode);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00052}\mbox{\hyperlink{input__handler_8cpp_a189dc6370fe35f18f300732cc0d2c23f}{00052}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input__handler_8cpp_a189dc6370fe35f18f300732cc0d2c23f}{inputDrivingWalking}}()\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00053}00053\ \ \ \ \ std::string\ source,\ destination,\ maxWalkTime,\ avoidNodesInput,\ avoidSegmentsInput;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00054}00054\ \ \ \ \ std::vector<std::string>\ avoidNodesString;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00055}00055\ \ \ \ \ std::vector<int>\ avoidNodes;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00057}00057\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Source:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00058}00058\ \ \ \ \ std::getline(std::cin,\ source);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00060}00060\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Destination:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00061}00061\ \ \ \ \ std::getline(std::cin,\ destination);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00063}00063\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}MaxWalkTime:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00064}00064\ \ \ \ \ std::getline(std::cin,\ maxWalkTime);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00066}00066\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}AvoidNodes:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00067}00067\ \ \ \ \ std::getline(std::cin,\ avoidNodesInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00069}00069\ \ \ \ \ std::stringstream\ ss(avoidNodesInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00070}00070\ \ \ \ \ std::string\ node;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(ss,\ node,\ \textcolor{charliteral}{','}))\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ avoidNodesString.push\_back(node);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ avoidNodesString)\{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ avoidNodes.push\_back(stoi(i));}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00080}00080\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}AvoidSegments:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00081}00081\ \ \ \ \ std::getline(std::cin,\ avoidSegmentsInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00082}00082\ \ \ \ \ std::vector<std::pair<int,\ int>>\ avoidSegments\ =\ \mbox{\hyperlink{data__handler_8cpp_a484845b1be9fed2acbcd2c971753fda7}{parseAvoidSegments}}(avoidSegmentsInput);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00084}00084\ \ \ \ \ \mbox{\hyperlink{drivingwalking_8cpp_aca5a938cd5ee5ea6285f6962dcd0ddc3}{drivingWalking}}(stoi(source),\ stoi(destination),\ stoi(maxWalkTime),\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00085}00085\ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00087}00087\ \textcolor{comment}{//\ Interactive\ input\ handlers}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00088}\mbox{\hyperlink{input__handler_8cpp_adec898a2df0d4b0d31891d2edca8a6a3}{00088}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input__handler_8cpp_adec898a2df0d4b0d31891d2edca8a6a3}{inputDriving}}()\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00089}00089\ \ \ \ \ std::string\ planning;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00090}00090\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Which\ type\ of\ planning\ would\ you\ like\ (independent/restricted):\ "{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00091}00091\ \ \ \ \ getline(std::cin,\ planning);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (planning\ ==\ \textcolor{stringliteral}{"{}independent"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__handler_8cpp_a506d56ab08100dd2a83005588535407f}{drivingIndependentInput}}();}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (planning\ ==\ \textcolor{stringliteral}{"{}restricted"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__handler_8cpp_ac90d3b8d2def4bff9cbe5651cbb3d6e6}{drivingRestrictedInput}}();}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{else}\ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ planning\ input."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00100}00100\ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00102}\mbox{\hyperlink{input__handler_8cpp_ac2d6678dd7e52310131ecbd69a6d6183}{00102}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input__handler_8cpp_ac2d6678dd7e52310131ecbd69a6d6183}{fileInput}}()\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00104}00104\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00106}00106\ \ \ \ \ std::ifstream\ i\_file(\textcolor{stringliteral}{"{}input.txt"{}});}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (!i\_file)\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ file!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00112}00112\ \ \ \ \ std::string\ mode,\ source,\ destination,\ maxWalkTime,\ avoidNodesString,\ avoidSegmentsString,\ includeNode;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_lines\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00114}00114\ \ \ \ \ std::unordered\_map<std::string,\ std::string*>\ keyMap\ =\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Mode"{}},\ \&mode\},}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Source"{}},\ \&source\},}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}Destination"{}},\ \&destination\},}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}MaxWalkTime"{}},\ \&maxWalkTime\},}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}AvoidNodes"{}},\ \&avoidNodesString\},}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}AvoidSegments"{}},\ \&avoidSegmentsString\},}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}IncludeNode"{}},\ \&includeNode\}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00122}00122\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00124}00124\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(i\_file,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ std::istringstream\ iss(line);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ std::string\ key,\ value;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::getline(iss,\ key,\ \textcolor{charliteral}{':'})\ \&\&\ std::getline(iss,\ value))\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ keyMap.find(key);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ keyMap.end())\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *(it-\/>second)\ =\ value;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ num\_lines++;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00138}00138\ \ \ \ \ std::stringstream\ ss(avoidNodesString);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00139}00139\ \ \ \ \ std::string\ node;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00140}00140\ \ \ \ \ std::vector<int>\ avoidNodes;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(ss,\ node,\ \textcolor{charliteral}{','}))\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ avoidNodes.push\_back(std::stoi(node));}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Invalid\ node\ ID:\ "{}}\ <<\ node\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00148}00148\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00150}00150\ \ \ \ \ std::vector<std::pair<int,\ int>>\ avoidSegments\ =\ \mbox{\hyperlink{data__handler_8cpp_a484845b1be9fed2acbcd2c971753fda7}{parseAvoidSegments}}(avoidSegmentsString);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00152}00152\ \ \ \ \ i\_file.close();}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00153}00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}driving"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_lines\ ==\ 3)\ \mbox{\hyperlink{driving_8cpp_a641c5940240416ffae83aaccbea17093}{independentDriving}}(stoi(source),\ stoi(destination));}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (num\_lines\ >\ 3)\ \mbox{\hyperlink{driving_8cpp_a40b628011c8118f5fde82d1a05f00b84}{restrictedDriving}}(stoi(source),\ stoi(destination),\ avoidNodes,\ avoidSegments,\ includeNode);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00156}00156\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00157}00157\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}driving-\/walking"{}})}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{drivingwalking_8cpp_aca5a938cd5ee5ea6285f6962dcd0ddc3}{drivingWalking}}(stoi(source),\ stoi(destination),\ stoi(maxWalkTime),\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00159}00159\ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00161}00161\ \textcolor{comment}{//\ Main\ input\ reading\ function}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00162}\mbox{\hyperlink{input__handler_8cpp_a2664904598abae2433dda5423060754f}{00162}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input__handler_8cpp_a2664904598abae2433dda5423060754f}{readInput}}()\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00163}00163\ \ \ \ \ std::string\ mode;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00165}00165\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00166}00166\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Mode:"{}};}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00167}00167\ \ \ \ \ getline(std::cin,\ mode);}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00169}00169\ \ \ \ \ mode.erase(std::ranges::remove\_if(mode,\ ::isspace).begin(),\ mode.end());}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}driving"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__handler_8cpp_adec898a2df0d4b0d31891d2edca8a6a3}{inputDriving}}();}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00172}00172\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \textcolor{stringliteral}{"{}driving-\/walking"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__handler_8cpp_a189dc6370fe35f18f300732cc0d2c23f}{inputDrivingWalking}}();}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00176}00176\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00178}00178\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{input__handler_8cpp_source_l00179}00179\ \}}
+
+\end{DoxyCode}

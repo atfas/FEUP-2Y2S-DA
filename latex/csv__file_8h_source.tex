@@ -1,0 +1,60 @@
+\doxysection{csv\+\_\+file.\+h}
+\hypertarget{csv__file_8h_source}{}\label{csv__file_8h_source}\index{data\_handler/csv\_file.h@{data\_handler/csv\_file.h}}
+\mbox{\hyperlink{csv__file_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ CSV\_FILE\_H}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ CSV\_FILE\_H}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Graph_8h}{../data\_structures/Graph.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00011}\mbox{\hyperlink{classLocationData}{00011}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLocationData_a40d2e3ca544986eba187fef6b3e4951f}{LocationData}}\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00012}00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00014}00014\ \ \ \ \ std::string\ code;}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{bool}\ parking;}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00017}00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00019}\mbox{\hyperlink{classLocationData_a40d2e3ca544986eba187fef6b3e4951f}{00019}}\ \ \ \ \ \mbox{\hyperlink{classLocationData_a40d2e3ca544986eba187fef6b3e4951f}{LocationData}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ code,\ \textcolor{keywordtype}{bool}\ parking)}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00020}00020\ \ \ \ \ \ \ \ \ :\ id(id),\ code(code),\ parking(parking)\ \{\}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ Default\ constructor}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00023}\mbox{\hyperlink{classLocationData_a997d23aab1994c0c0dc441c9cde81f6c}{00023}}\ \ \ \ \ \mbox{\hyperlink{classLocationData_a997d23aab1994c0c0dc441c9cde81f6c}{LocationData}}()\ :\ id(0),\ code(\textcolor{stringliteral}{"{}"{}}),\ parking(false)\ \{\}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00026}\mbox{\hyperlink{classLocationData_acd9a2c7f48111d8b6984b554c671d08a}{00026}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classLocationData_acd9a2c7f48111d8b6984b554c671d08a}{getId}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ id;\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00027}\mbox{\hyperlink{classLocationData_a155dbed3e081ac34f73c7cf2d144ec88}{00027}}\ \ \ \ \ std::string\ \mbox{\hyperlink{classLocationData_a155dbed3e081ac34f73c7cf2d144ec88}{getCode}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ code;\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00028}\mbox{\hyperlink{classLocationData_a66e747bee87a5e5a7a2918ff10d4c984}{00028}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classLocationData_a66e747bee87a5e5a7a2918ff10d4c984}{hasParking}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ parking;\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00029}00029\ \};}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00031}\mbox{\hyperlink{structEdgeData}{00031}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEdgeData_a5b0855cf8f41a81000c3f7609a631b9e}{EdgeData}}\ \{}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00032}\mbox{\hyperlink{structEdgeData_ae4e6edc2d98ddf979ba7cf4987eb17e3}{00032}}\ \ \ \ \ std::string\ \mbox{\hyperlink{structEdgeData_ae4e6edc2d98ddf979ba7cf4987eb17e3}{location1}};}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00033}\mbox{\hyperlink{structEdgeData_ab178de319dc2792d592252bdc4ca70e3}{00033}}\ \ \ \ \ std::string\ \mbox{\hyperlink{structEdgeData_ab178de319dc2792d592252bdc4ca70e3}{location2}};}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00034}\mbox{\hyperlink{structEdgeData_a31ab3b02666033e13d762f563be4207c}{00034}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structEdgeData_a31ab3b02666033e13d762f563be4207c}{drivingTime}};}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00035}\mbox{\hyperlink{structEdgeData_a2b0f9c76823290391c0c1b22ff647cb3}{00035}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structEdgeData_a2b0f9c76823290391c0c1b22ff647cb3}{walkingTime}};}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00037}\mbox{\hyperlink{structEdgeData_a5b0855cf8f41a81000c3f7609a631b9e}{00037}}\ \ \ \ \ \mbox{\hyperlink{structEdgeData_a5b0855cf8f41a81000c3f7609a631b9e}{EdgeData}}()}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structEdgeData_ae4e6edc2d98ddf979ba7cf4987eb17e3}{location1}}(\textcolor{stringliteral}{"{}"{}}),\ \mbox{\hyperlink{structEdgeData_ab178de319dc2792d592252bdc4ca70e3}{location2}}(\textcolor{stringliteral}{"{}"{}}),\ \mbox{\hyperlink{structEdgeData_a31ab3b02666033e13d762f563be4207c}{drivingTime}}(0.0),\ \mbox{\hyperlink{structEdgeData_a2b0f9c76823290391c0c1b22ff647cb3}{walkingTime}}(0.0)\ \{\}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00040}\mbox{\hyperlink{structEdgeData_ab390da3cc8b932045f0c0f1eb267da7e}{00040}}\ \ \ \ \ \mbox{\hyperlink{structEdgeData_ab390da3cc8b932045f0c0f1eb267da7e}{EdgeData}}(\textcolor{keyword}{const}\ std::string\&\ loc1,\ \textcolor{keyword}{const}\ std::string\&\ loc2,\ \textcolor{keywordtype}{double}\ driving,\ \textcolor{keywordtype}{double}\ walking)}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structEdgeData_ae4e6edc2d98ddf979ba7cf4987eb17e3}{location1}}(loc1),\ \mbox{\hyperlink{structEdgeData_ab178de319dc2792d592252bdc4ca70e3}{location2}}(loc2),\ \mbox{\hyperlink{structEdgeData_a31ab3b02666033e13d762f563be4207c}{drivingTime}}(driving),\ \mbox{\hyperlink{structEdgeData_a2b0f9c76823290391c0c1b22ff647cb3}{walkingTime}}(walking)\ \{\}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00043}\mbox{\hyperlink{structEdgeData_ad64540de23e83cf28492e561dc57714f}{00043}}\ \ \ \ \ std::string\ \mbox{\hyperlink{structEdgeData_ad64540de23e83cf28492e561dc57714f}{getLocation1}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structEdgeData_ae4e6edc2d98ddf979ba7cf4987eb17e3}{location1}};\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00044}\mbox{\hyperlink{structEdgeData_a5a51a3452bfb4d98b806ec438fc35455}{00044}}\ \ \ \ \ std::string\ \mbox{\hyperlink{structEdgeData_a5a51a3452bfb4d98b806ec438fc35455}{getLocation2}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structEdgeData_ab178de319dc2792d592252bdc4ca70e3}{location2}};\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00045}\mbox{\hyperlink{structEdgeData_a66326877afe5ca1030f5e88edd9eb994}{00045}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structEdgeData_a66326877afe5ca1030f5e88edd9eb994}{getDrivingTime}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structEdgeData_a31ab3b02666033e13d762f563be4207c}{drivingTime}};\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00046}\mbox{\hyperlink{structEdgeData_a3d462eb05efe875c2bcbc8db25a624df}{00046}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structEdgeData_a3d462eb05efe875c2bcbc8db25a624df}{getWalkingTime}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structEdgeData_a2b0f9c76823290391c0c1b22ff647cb3}{walkingTime}};\ \}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00047}00047\ \};}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00049}00049\ std::unordered\_map<std::string,\ LocationData>\ \mbox{\hyperlink{csv__file_8h_a6f5095131bb7d0386a4b156d03da97fe}{readLocations}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00050}00050\ std::vector<EdgeData>\ \mbox{\hyperlink{csv__file_8h_ae3f3b169bfb5afdcfa8cfa2b7c258324}{readEdges}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00051}00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{csv__file_8h_a7b35a3c74172d20724ae400ce141d712}{createGraph}}(\mbox{\hyperlink{classGraph}{Graph<int>}}\&\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ \textcolor{keyword}{const}\ std::string\&\ locationsFile,\ \textcolor{keyword}{const}\ std::string\&\ edgesFile);}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00052}00052\ \textcolor{comment}{//void\ createGraph(Graph<int>\ \&myGraph);}}
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{csv__file_8h_source_l00054}00054\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//CSV\_FILE\_H}}
+
+\end{DoxyCode}

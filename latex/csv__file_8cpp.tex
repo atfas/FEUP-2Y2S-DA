@@ -1,0 +1,45 @@
+\doxysection{data\+\_\+handler/csv\+\_\+file.cpp File Reference}
+\hypertarget{csv__file_8cpp}{}\label{csv__file_8cpp}\index{data\_handler/csv\_file.cpp@{data\_handler/csv\_file.cpp}}
+{\ttfamily \#include "{}csv\+\_\+file.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{classLocationData}{Location\+Data}} $>$ \mbox{\hyperlink{csv__file_8cpp_a6f5095131bb7d0386a4b156d03da97fe}{read\+Locations}} (const std\+::string \&filename)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structEdgeData}{Edge\+Data}} $>$ \mbox{\hyperlink{csv__file_8cpp_ae3f3b169bfb5afdcfa8cfa2b7c258324}{read\+Edges}} (const std\+::string \&filename)
+\item 
+void \mbox{\hyperlink{csv__file_8cpp_a7b35a3c74172d20724ae400ce141d712}{create\+Graph}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}, const std\+::string \&locations\+File, const std\+::string \&edges\+File)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{csv__file_8cpp_a7b35a3c74172d20724ae400ce141d712}\index{csv\_file.cpp@{csv\_file.cpp}!createGraph@{createGraph}}
+\index{createGraph@{createGraph}!csv\_file.cpp@{csv\_file.cpp}}
+\doxysubsubsection{\texorpdfstring{createGraph()}{createGraph()}}
+{\footnotesize\ttfamily \label{csv__file_8cpp_a7b35a3c74172d20724ae400ce141d712} 
+void create\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph}{, }\item[{const std\+::string \&}]{locations\+File}{, }\item[{const std\+::string \&}]{edges\+File}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{csv__file_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{csv__file_8cpp_source}{csv\+\_\+file.\+cpp}}.
+
+\Hypertarget{csv__file_8cpp_ae3f3b169bfb5afdcfa8cfa2b7c258324}\index{csv\_file.cpp@{csv\_file.cpp}!readEdges@{readEdges}}
+\index{readEdges@{readEdges}!csv\_file.cpp@{csv\_file.cpp}}
+\doxysubsubsection{\texorpdfstring{readEdges()}{readEdges()}}
+{\footnotesize\ttfamily \label{csv__file_8cpp_ae3f3b169bfb5afdcfa8cfa2b7c258324} 
+std\+::vector$<$ \mbox{\hyperlink{structEdgeData}{Edge\+Data}} $>$ read\+Edges (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{csv__file_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{csv__file_8cpp_source}{csv\+\_\+file.\+cpp}}.
+
+\Hypertarget{csv__file_8cpp_a6f5095131bb7d0386a4b156d03da97fe}\index{csv\_file.cpp@{csv\_file.cpp}!readLocations@{readLocations}}
+\index{readLocations@{readLocations}!csv\_file.cpp@{csv\_file.cpp}}
+\doxysubsubsection{\texorpdfstring{readLocations()}{readLocations()}}
+{\footnotesize\ttfamily \label{csv__file_8cpp_a6f5095131bb7d0386a4b156d03da97fe} 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{classLocationData}{Location\+Data}} $>$ read\+Locations (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{csv__file_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{csv__file_8cpp_source}{csv\+\_\+file.\+cpp}}.
+

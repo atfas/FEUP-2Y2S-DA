@@ -1,0 +1,92 @@
+\doxysection{data\+\_\+handler/data\+\_\+handler.h File Reference}
+\hypertarget{data__handler_8h}{}\label{data__handler_8h}\index{data\_handler/data\_handler.h@{data\_handler/data\_handler.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}../data\+\_\+structures/\+Graph.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPath}{Path}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structPath}{Path}} \mbox{\hyperlink{data__handler_8h_a8c373680216dea1b367efd6c7c75298c}{create\+Path}} (std\+::vector$<$ int $>$ \&path, bool reverse=false)
+\item 
+\mbox{\hyperlink{structPath}{Path}} \mbox{\hyperlink{data__handler_8h_a8b740256f18e55d3513c9980a2cff19b}{merge\+Paths}} (\mbox{\hyperlink{structPath}{Path}} first\+Path, \mbox{\hyperlink{structPath}{Path}} second\+Path)
+\item 
+void \mbox{\hyperlink{data__handler_8h_a38fb011586e4c9f4569d14424d74e3f8}{write\+Path\+Terminal}} (\mbox{\hyperlink{structPath}{Path}} \&path)
+\item 
+void \mbox{\hyperlink{data__handler_8h_ac9fe8567287a195a55d85ce94ac449fd}{write\+Path\+To\+File}} (std\+::ofstream \&file, \mbox{\hyperlink{structPath}{Path}} \&path)
+\item 
+std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \mbox{\hyperlink{data__handler_8h_a484845b1be9fed2acbcd2c971753fda7}{parse\+Avoid\+Segments}} (const std\+::string \&avoid\+Segments\+Input)
+\item 
+void \mbox{\hyperlink{data__handler_8h_a54969e0f360c159e8484f3729b04ab37}{message\+Output}} (std\+::string \&message, int source, int destination, int max\+Walk\+Time, const std\+::vector$<$ int $>$ \&avoid\+Nodes, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{data__handler_8h_a8c373680216dea1b367efd6c7c75298c}\index{data\_handler.h@{data\_handler.h}!createPath@{createPath}}
+\index{createPath@{createPath}!data\_handler.h@{data\_handler.h}}
+\doxysubsubsection{\texorpdfstring{createPath()}{createPath()}}
+{\footnotesize\ttfamily \label{data__handler_8h_a8c373680216dea1b367efd6c7c75298c} 
+\mbox{\hyperlink{structPath}{Path}} create\+Path (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{path}{, }\item[{bool}]{reverse}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{data__handler_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{data__handler_8cpp_source}{data\+\_\+handler.\+cpp}}.
+
+\Hypertarget{data__handler_8h_a8b740256f18e55d3513c9980a2cff19b}\index{data\_handler.h@{data\_handler.h}!mergePaths@{mergePaths}}
+\index{mergePaths@{mergePaths}!data\_handler.h@{data\_handler.h}}
+\doxysubsubsection{\texorpdfstring{mergePaths()}{mergePaths()}}
+{\footnotesize\ttfamily \label{data__handler_8h_a8b740256f18e55d3513c9980a2cff19b} 
+\mbox{\hyperlink{structPath}{Path}} merge\+Paths (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPath}{Path}}}]{first\+Path}{, }\item[{\mbox{\hyperlink{structPath}{Path}}}]{second\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{data__handler_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{data__handler_8cpp_source}{data\+\_\+handler.\+cpp}}.
+
+\Hypertarget{data__handler_8h_a54969e0f360c159e8484f3729b04ab37}\index{data\_handler.h@{data\_handler.h}!messageOutput@{messageOutput}}
+\index{messageOutput@{messageOutput}!data\_handler.h@{data\_handler.h}}
+\doxysubsubsection{\texorpdfstring{messageOutput()}{messageOutput()}}
+{\footnotesize\ttfamily \label{data__handler_8h_a54969e0f360c159e8484f3729b04ab37} 
+void message\+Output (\begin{DoxyParamCaption}\item[{std\+::string \&}]{message}{, }\item[{int}]{source}{, }\item[{int}]{destination}{, }\item[{int}]{max\+Walk\+Time}{, }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+Nodes}{, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{data__handler_8cpp_source_l00096}{96}} of file \mbox{\hyperlink{data__handler_8cpp_source}{data\+\_\+handler.\+cpp}}.
+
+\Hypertarget{data__handler_8h_a484845b1be9fed2acbcd2c971753fda7}\index{data\_handler.h@{data\_handler.h}!parseAvoidSegments@{parseAvoidSegments}}
+\index{parseAvoidSegments@{parseAvoidSegments}!data\_handler.h@{data\_handler.h}}
+\doxysubsubsection{\texorpdfstring{parseAvoidSegments()}{parseAvoidSegments()}}
+{\footnotesize\ttfamily \label{data__handler_8h_a484845b1be9fed2acbcd2c971753fda7} 
+std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ parse\+Avoid\+Segments (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{avoid\+Segments\+Input}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{data__handler_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{data__handler_8cpp_source}{data\+\_\+handler.\+cpp}}.
+
+\Hypertarget{data__handler_8h_a38fb011586e4c9f4569d14424d74e3f8}\index{data\_handler.h@{data\_handler.h}!writePathTerminal@{writePathTerminal}}
+\index{writePathTerminal@{writePathTerminal}!data\_handler.h@{data\_handler.h}}
+\doxysubsubsection{\texorpdfstring{writePathTerminal()}{writePathTerminal()}}
+{\footnotesize\ttfamily \label{data__handler_8h_a38fb011586e4c9f4569d14424d74e3f8} 
+void write\+Path\+Terminal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPath}{Path}} \&}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{data__handler_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{data__handler_8cpp_source}{data\+\_\+handler.\+cpp}}.
+
+\Hypertarget{data__handler_8h_ac9fe8567287a195a55d85ce94ac449fd}\index{data\_handler.h@{data\_handler.h}!writePathToFile@{writePathToFile}}
+\index{writePathToFile@{writePathToFile}!data\_handler.h@{data\_handler.h}}
+\doxysubsubsection{\texorpdfstring{writePathToFile()}{writePathToFile()}}
+{\footnotesize\ttfamily \label{data__handler_8h_ac9fe8567287a195a55d85ce94ac449fd} 
+void write\+Path\+To\+File (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file}{, }\item[{\mbox{\hyperlink{structPath}{Path}} \&}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{data__handler_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{data__handler_8cpp_source}{data\+\_\+handler.\+cpp}}.
+

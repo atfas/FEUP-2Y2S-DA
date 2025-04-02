@@ -1,0 +1,161 @@
+\doxysection{drivingwalking.\+cpp}
+\hypertarget{drivingwalking_8cpp_source}{}\label{drivingwalking_8cpp_source}\index{drivingwalking/drivingwalking.cpp@{drivingwalking/drivingwalking.cpp}}
+\mbox{\hyperlink{drivingwalking_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{drivingwalking_8h}{drivingwalking.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00003}00003\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classGraph}{Graph<int>}}\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00014}\mbox{\hyperlink{drivingwalking_8cpp_a341146967330b2acb11764b1ffd34688}{00014}}\ std::vector<std::pair<Path,\ Path>>\ \mbox{\hyperlink{drivingwalking_8cpp_a341146967330b2acb11764b1ffd34688}{findPaths}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ maxWalkTime,}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes\ =\ \{\},\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments\ =\ \{\})\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00017}00017\ \ \ \ \ std::vector<std::pair<Path,\ Path>>\ paths;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00021}00021\ \ \ \ \ std::unordered\_map<int,\ Path>\ drivingPaths;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v\ :\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}.getVertexSet())\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v-\/>isParking())\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int>\ firstPath\ =\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ v-\/>getInfo());}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ routePath\ =\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(firstPath);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ drivingPaths[v-\/>getInfo()]\ =\ routePath;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ destination,\ avoidNodes,\ avoidSegments,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00033}00033\ \ \ \ \ std::unordered\_map<int,\ Path>\ walkingPaths;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v\ :\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}}.getVertexSet())\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v-\/>isParking())\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int>\ firstPath\ =\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ destination,\ v-\/>getInfo());}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ std::reverse(firstPath.begin(),\ firstPath.end());}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ routePath\ =\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(firstPath,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (routePath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ <=\ maxWalkTime)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ walkingPaths[v-\/>getInfo()]\ =\ routePath;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (walkingPaths.size()\ <=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ paths.push\_back(\{\{\},\ \{\}\});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ paths.push\_back(\{\{\},\ \{\}\});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [parkingNode,\ drivePath]\ :\ drivingPaths)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ walkingPaths.find(parkingNode);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ walkingPaths.end())\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ paths.push\_back(\{drivePath,\ it-\/>second\});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00059}00059\ \ \ \ \ std::sort(paths.begin(),\ paths.end(),\ [](\textcolor{keyword}{const}\ std::pair<Path,\ Path>\&\ a,\ \textcolor{keyword}{const}\ std::pair<Path,\ Path>\&\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ double\ totalDistA\ =\ a.first.getDistance()\ +\ a.second.getDistance();}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ double\ totalDistB\ =\ b.first.getDistance()\ +\ b.second.getDistance();}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ if\ (totalDistA\ !=\ totalDistB)\ return\ totalDistA\ <\ totalDistB;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ return\ a.second.getDistance()\ >\ b.second.getDistance();}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00064}00064\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{return}\ paths;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00078}\mbox{\hyperlink{drivingwalking_8cpp_aca5a938cd5ee5ea6285f6962dcd0ddc3}{00078}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{drivingwalking_8cpp_aca5a938cd5ee5ea6285f6962dcd0ddc3}{drivingWalking}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ maxWalkTime,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes\ =\ \{\},\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments\ =\ \{\})\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keyword}{auto}\ paths\ =\ \mbox{\hyperlink{drivingwalking_8cpp_a341146967330b2acb11764b1ffd34688}{findPaths}}(source,\ destination,\ maxWalkTime,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00081}00081\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ drivingPath\ =\ paths[0].first;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00082}00082\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ walkingPath\ =\ paths[0].second;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{int}\ parkingNode\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (!walkingPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().empty())\ parkingNode\ =\ walkingPath.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[0];}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00087}00087\ \ \ \ \ \mbox{\hyperlink{drivingwalking_8cpp_a166c18fddc13754c527a9dd3e52399ac}{drivingWalkingOutput}}(source,\ destination,\ parkingNode,\ drivingPath,\ walkingPath,\ avoidNodes,\ avoidSegments,\ maxWalkTime);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00088}00088\ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00097}\mbox{\hyperlink{drivingwalking_8cpp_a05a8a5a72d3607771c92b93543620acc}{00097}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{drivingwalking_8cpp_a05a8a5a72d3607771c92b93543620acc}{drivingWalkingApprox}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{keyword}{auto}\ paths\ =\ \mbox{\hyperlink{drivingwalking_8cpp_a341146967330b2acb11764b1ffd34688}{findPaths}}(source,\ destination,999999,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00100}00100\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ drivingPath1\ =\ paths[0].first;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00101}00101\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ walkingPath1\ =\ paths[0].second;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00102}00102\ \ \ \ \ \textcolor{keywordtype}{int}\ parkingNode1\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (!walkingPath1.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().empty())\ parkingNode1\ =\ walkingPath1.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[0];}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00106}00106\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ drivingPath2\ =\ paths[1].first;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00107}00107\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ walkingPath2\ =\ paths[1].second;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordtype}{int}\ parkingNode2\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (!walkingPath2.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}().empty())\ parkingNode2\ =\ walkingPath2.\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()[0];}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00112}00112\ \ \ \ \ \mbox{\hyperlink{output__handler_8cpp_a1104b0121b48ce85c8156d2c3ee4153b}{drivingWalkingApproxOutput}}(source,\ destination,\ parkingNode1,drivingPath1,walkingPath1,\ parkingNode2,\ drivingPath2,\ walkingPath2);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00113}00113\ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00115}\mbox{\hyperlink{drivingwalking_8cpp_a166c18fddc13754c527a9dd3e52399ac}{00115}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{drivingwalking_8cpp_a166c18fddc13754c527a9dd3e52399ac}{drivingWalkingOutput}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ parkingNode,\ \mbox{\hyperlink{structPath}{Path}}\&\ drivingPath,\ \mbox{\hyperlink{structPath}{Path}}\&\ walkingPath,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments,\ \textcolor{keywordtype}{int}\ maxWalkTime)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00116}00116\ \ \ \ \ std::string\ message;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00117}00117\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00118}00118\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ destination\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00119}00119\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}DrivingRoute:"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00120}00120\ \ \ \ \ \mbox{\hyperlink{data__handler_8cpp_a38fb011586e4c9f4569d14424d74e3f8}{writePathTerminal}}(drivingPath);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00122}00122\ \ \ \ \ \textcolor{keywordflow}{if}\ (parkingNode\ ==\ -\/1)\ std::cout\ <<\ \textcolor{stringliteral}{"{}ParkingNode:none"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00123}00123\ \ \ \ \ \textcolor{keywordflow}{else}\ std::cout\ <<\ \textcolor{stringliteral}{"{}ParkingNode:"{}}\ <<\ parkingNode\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00125}00125\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}WalkingRoute:"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00126}00126\ \ \ \ \ \mbox{\hyperlink{data__handler_8cpp_a38fb011586e4c9f4569d14424d74e3f8}{writePathTerminal}}(walkingPath);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (walkingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ +\ drivingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ <\ \mbox{\hyperlink{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}})\ std::cout\ <<\ \textcolor{stringliteral}{"{}TotalTime:"{}}\ <<\ walkingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ +\ drivingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00129}00129\ \ \ \ \ \textcolor{keywordflow}{else}\ std::cout\ <<\ \textcolor{stringliteral}{"{}TotalTime:"{}}<<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (parkingNode\ ==\ -\/1)\ \mbox{\hyperlink{data__handler_8cpp_ad0e9c62eca3f73e8be4ca90935304caf}{messageOutput}}(message,\ source,\ destination,\ maxWalkTime,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00133}00133\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Message:"{}}\ <<\ message\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00135}00135\ \ \ \ \ std::ofstream\ o\_file(\textcolor{stringliteral}{"{}output.txt"{}});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (!o\_file)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Could\ not\ create\ file"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00139}00139\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00141}00141\ \ \ \ \ o\_file\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00142}00142\ \ \ \ \ o\_file\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ destination\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00143}00143\ \ \ \ \ o\_file\ <<\ \textcolor{stringliteral}{"{}DrivingRoute:"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00144}00144\ \ \ \ \ \mbox{\hyperlink{data__handler_8cpp_ac9fe8567287a195a55d85ce94ac449fd}{writePathToFile}}(o\_file,drivingPath);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (parkingNode\ ==\ -\/1)\ o\_file\ <<\ \textcolor{stringliteral}{"{}ParkingNode:none"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{else}\ o\_file\ <<\ \textcolor{stringliteral}{"{}ParkingNode:"{}}\ <<\ parkingNode\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00149}00149\ \ \ \ \ o\_file\ <<\ \textcolor{stringliteral}{"{}WalkingRoute:"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00150}00150\ \ \ \ \ \mbox{\hyperlink{data__handler_8cpp_ac9fe8567287a195a55d85ce94ac449fd}{writePathToFile}}(o\_file,walkingPath);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (walkingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ +\ drivingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ <\ \mbox{\hyperlink{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}})\ o\_file\ <<\ \textcolor{stringliteral}{"{}TotalTime:"{}}\ <<\ walkingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ +\ drivingPath.\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00153}00153\ \ \ \ \ \textcolor{keywordflow}{else}\ o\_file\ <<\ \textcolor{stringliteral}{"{}TotalTime:"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00155}00155\ \ \ \ \ o\_file\ <<\ \textcolor{stringliteral}{"{}Message:"{}}\ <<\ message\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00157}00157\ \ \ \ \ o\_file.close();}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (parkingNode\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ std::string\ answer;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ route\ available.\ Would\ you\ like\ to\ see\ alternative\ routes?\ (Y/N):"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ std::getline(std::cin,\ answer);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (answer\ ==\ \textcolor{stringliteral}{"{}N"{}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (answer\ ==\ \textcolor{stringliteral}{"{}Y"{}})\{}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Source:"{}}\ <<\ source\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Destination:"{}}\ <<\ destination\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{drivingwalking_8cpp_a05a8a5a72d3607771c92b93543620acc}{drivingWalkingApprox}}(source,\ destination,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Would\ you\ like\ to\ consider\ all\ nodes\ and\ edges\ for\ a\ more\ broad\ search?(Y/N):"{}};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ std::getline(std::cin,\ answer);}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (answer\ ==\ \textcolor{stringliteral}{"{}N"{}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (answer\ ==\ \textcolor{stringliteral}{"{}Y"{}})\ \mbox{\hyperlink{drivingwalking_8cpp_a05a8a5a72d3607771c92b93543620acc}{drivingWalkingApprox}}(source,\ destination,\ \{\},\ \{\});}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00178}00178\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{drivingwalking_8cpp_source_l00179}00179\ \}}
+
+\end{DoxyCode}

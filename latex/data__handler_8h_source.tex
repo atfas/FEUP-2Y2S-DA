@@ -1,0 +1,51 @@
+\doxysection{data\+\_\+handler.\+h}
+\hypertarget{data__handler_8h_source}{}\label{data__handler_8h_source}\index{data\_handler/data\_handler.h@{data\_handler/data\_handler.h}}
+\mbox{\hyperlink{data__handler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ DATA\_HANDLER\_H}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ DATA\_HANDLER\_H}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Graph_8h}{../data\_structures/Graph.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00012}\mbox{\hyperlink{structPath}{00012}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPath_af26cfab021ddf49af73da3b2beca85ac}{Path}}\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00013}00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00014}00014\ \ \ \ \ std::vector<int>\ route;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{double}\ distance;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00016}00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00017}\mbox{\hyperlink{structPath_af26cfab021ddf49af73da3b2beca85ac}{00017}}\ \ \ \ \ \mbox{\hyperlink{structPath_af26cfab021ddf49af73da3b2beca85ac}{Path}}()\{}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00018}00018\ \ \ \ \ \ \ \ \ this-\/>route\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ this-\/>distance\ =\ \mbox{\hyperlink{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}};}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00021}\mbox{\hyperlink{structPath_a0347c3bbe1f207c9a415bd837e0e797f}{00021}}\ \ \ \ \ \mbox{\hyperlink{structPath_a0347c3bbe1f207c9a415bd837e0e797f}{Path}}(std::vector<int>\ route,\ \textcolor{keywordtype}{double}\ distance)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ this-\/>route\ =\ route;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ this-\/>distance\ =\ distance;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00025}\mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{00025}}\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{structPath_a9684e5d82da6f63a0ea0379ebae9a434}{getRoute}}()\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ route;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00028}\mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{00028}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structPath_abddacf3891437035d0b5b81eb76a2f80}{getDistance}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ distance;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00031}\mbox{\hyperlink{structPath_a79e60248c823502c2114d917aa0be829}{00031}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structPath_a79e60248c823502c2114d917aa0be829}{setDistance}}(\textcolor{keywordtype}{double}\ distance)\ \{}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ this-\/>distance\ =\ distance;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00034}\mbox{\hyperlink{structPath_ace6023e92b6513104b5f0c16327cd2f0}{00034}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structPath_ace6023e92b6513104b5f0c16327cd2f0}{setRoute}}(std::vector<int>\ route)\{}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ this-\/>route\ =\ route;}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00037}00037\ \};}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00039}00039\ \mbox{\hyperlink{structPath}{Path}}\ \mbox{\hyperlink{data__handler_8h_a8c373680216dea1b367efd6c7c75298c}{createPath}}(std::vector<int>\ \&path,\ \textcolor{keywordtype}{bool}\ reverse\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00040}00040\ \mbox{\hyperlink{structPath}{Path}}\ \mbox{\hyperlink{data__handler_8h_a8b740256f18e55d3513c9980a2cff19b}{mergePaths}}(\mbox{\hyperlink{structPath}{Path}}\ firstPath,\ \mbox{\hyperlink{structPath}{Path}}\ secondPath);}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00041}00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{data__handler_8h_a38fb011586e4c9f4569d14424d74e3f8}{writePathTerminal}}(\mbox{\hyperlink{structPath}{Path}}\ \&path);}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00042}00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{data__handler_8h_ac9fe8567287a195a55d85ce94ac449fd}{writePathToFile}}(std::ofstream\&\ file,\ \mbox{\hyperlink{structPath}{Path}}\ \&path);}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00043}00043\ std::vector<std::pair<int,\ int>>\ \mbox{\hyperlink{data__handler_8h_a484845b1be9fed2acbcd2c971753fda7}{parseAvoidSegments}}(\textcolor{keyword}{const}\ std::string\&\ avoidSegmentsInput);}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00044}00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{data__handler_8h_a54969e0f360c159e8484f3729b04ab37}{messageOutput}}(std::string\&\ message,\ \textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keywordtype}{int}\ maxWalkTime,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{data__handler_8h_source_l00045}00045\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

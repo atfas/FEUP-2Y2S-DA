@@ -1,0 +1,97 @@
+\doxysection{Mutable\+Priority\+Queue.\+h}
+\hypertarget{MutablePriorityQueue_8h_source}{}\label{MutablePriorityQueue_8h_source}\index{data\_structures/MutablePriorityQueue.h@{data\_structures/MutablePriorityQueue.h}}
+\mbox{\hyperlink{MutablePriorityQueue_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ MUTABLEPRIORITYQUEUE}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ MUTABLEPRIORITYQUEUE}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00010}00010\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00011}\mbox{\hyperlink{classMutablePriorityQueue}{00011}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMutablePriorityQueue_a4d4d12a8c7d8f9fa88d3142e09f764f6}{MutablePriorityQueue}}\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00012}00012\ \ \ \ \ std::vector<M\ *>\ H;}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{void}\ heapifyUp(\textcolor{keywordtype}{unsigned}\ i);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{void}\ heapifyDown(\textcolor{keywordtype}{unsigned}\ i);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ set(\textcolor{keywordtype}{unsigned}\ i,\ M\ *\ x);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00016}00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{classMutablePriorityQueue_a4d4d12a8c7d8f9fa88d3142e09f764f6}{MutablePriorityQueue}}();}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMutablePriorityQueue_a3cfb95724838a02bfae84c23156b1530}{insert}}(M\ *\ x);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00019}00019\ \ \ \ \ M\ *\ \mbox{\hyperlink{classMutablePriorityQueue_af47686310dc556773819d2ba0fdb1255}{extractMin}}();}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMutablePriorityQueue_a487b80554cf82afc8c1978f156dc1df3}{decreaseKey}}(M\ *\ x);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMutablePriorityQueue_a502df7a510f7d9970f89a0b5900cf581}{empty}}();}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00022}00022\ \};}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00024}00024\ \textcolor{comment}{//\ Index\ calculations}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00025}\mbox{\hyperlink{MutablePriorityQueue_8h_a915a9564b15f2c25e828da2e9a05769c}{00025}}\ \textcolor{preprocessor}{\#define\ parent(i)\ ((i)\ /\ 2)}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00026}\mbox{\hyperlink{MutablePriorityQueue_8h_ac84ef3998ba958fd8abf03d08cc5ffcb}{00026}}\ \textcolor{preprocessor}{\#define\ leftChild(i)\ ((i)\ *\ 2)}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00028}00028\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00029}\mbox{\hyperlink{classMutablePriorityQueue_a4d4d12a8c7d8f9fa88d3142e09f764f6}{00029}}\ \mbox{\hyperlink{classMutablePriorityQueue_a4d4d12a8c7d8f9fa88d3142e09f764f6}{MutablePriorityQueue<M>::MutablePriorityQueue}}()\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00030}00030\ \ \ \ \ H.push\_back(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ indices\ will\ be\ used\ starting\ in\ 1}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ to\ facilitate\ parent/child\ calculations}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00033}00033\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00035}00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00036}\mbox{\hyperlink{classMutablePriorityQueue_a502df7a510f7d9970f89a0b5900cf581}{00036}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMutablePriorityQueue_a502df7a510f7d9970f89a0b5900cf581}{MutablePriorityQueue<M>::empty}}()\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ H.size()\ ==\ 1;}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00040}00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00041}\mbox{\hyperlink{classMutablePriorityQueue_af47686310dc556773819d2ba0fdb1255}{00041}}\ M*\ \mbox{\hyperlink{classMutablePriorityQueue_af47686310dc556773819d2ba0fdb1255}{MutablePriorityQueue<M>::extractMin}}()\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{auto}\ x\ =\ H[1];}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00043}00043\ \ \ \ \ H[1]\ =\ H.back();}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00044}00044\ \ \ \ \ H.pop\_back();}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{if}(H.size()\ >\ 1)\ heapifyDown(1);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00046}00046\ \ \ \ \ x-\/>queueIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00050}00050\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00051}\mbox{\hyperlink{classMutablePriorityQueue_a3cfb95724838a02bfae84c23156b1530}{00051}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMutablePriorityQueue_a3cfb95724838a02bfae84c23156b1530}{MutablePriorityQueue<M>::insert}}(M\ *x)\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00052}00052\ \ \ \ \ H.push\_back(x);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00053}00053\ \ \ \ \ heapifyUp(H.size()-\/1);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00056}00056\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00057}\mbox{\hyperlink{classMutablePriorityQueue_a487b80554cf82afc8c1978f156dc1df3}{00057}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMutablePriorityQueue_a487b80554cf82afc8c1978f156dc1df3}{MutablePriorityQueue<M>::decreaseKey}}(M\ *x)\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00058}00058\ \ \ \ \ heapifyUp(x-\/>queueIndex);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00059}00059\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00061}00061\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00062}00062\ \textcolor{keywordtype}{void}\ MutablePriorityQueue<M>::heapifyUp(\textcolor{keywordtype}{unsigned}\ i)\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00063}00063\ \ \ \ \ \textcolor{keyword}{auto}\ x\ =\ H[i];}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{while}\ (i\ >\ 1\ \&\&\ *x\ <\ *H[\mbox{\hyperlink{MutablePriorityQueue_8h_a915a9564b15f2c25e828da2e9a05769c}{parent}}(i)])\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ set(i,\ H[\mbox{\hyperlink{MutablePriorityQueue_8h_a915a9564b15f2c25e828da2e9a05769c}{parent}}(i)]);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ i\ =\ \mbox{\hyperlink{MutablePriorityQueue_8h_a915a9564b15f2c25e828da2e9a05769c}{parent}}(i);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00068}00068\ \ \ \ \ set(i,\ x);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00071}00071\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00072}00072\ \textcolor{keywordtype}{void}\ MutablePriorityQueue<M>::heapifyDown(\textcolor{keywordtype}{unsigned}\ i)\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00073}00073\ \ \ \ \ \textcolor{keyword}{auto}\ x\ =\ H[i];}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ k\ =\ \mbox{\hyperlink{MutablePriorityQueue_8h_ac84ef3998ba958fd8abf03d08cc5ffcb}{leftChild}}(i);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (k\ >=\ H.size())}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (k+1\ <\ H.size()\ \&\&\ *H[k+1]\ <\ *H[k])}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ ++k;\ \textcolor{comment}{//\ right\ child\ of\ i}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ (*H[k]\ <\ *x)\ )}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ set(i,\ H[k]);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00083}00083\ \ \ \ \ \ \ \ \ i\ =\ k;}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00085}00085\ \ \ \ \ set(i,\ x);}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00086}00086\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00088}00088\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ M>}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00089}00089\ \textcolor{keywordtype}{void}\ MutablePriorityQueue<M>::set(\textcolor{keywordtype}{unsigned}\ i,\ M\ *\ x)\ \{}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00090}00090\ \ \ \ \ H[i]\ =\ x;}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00091}00091\ \ \ \ \ x-\/>queueIndex\ =\ i;}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00092}00092\ \}}
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{MutablePriorityQueue_8h_source_l00094}00094\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ MUTABLEPRIORITYQUEUE\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

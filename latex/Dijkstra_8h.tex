@@ -1,0 +1,76 @@
+\doxysection{Dijkstra.\+h File Reference}
+\hypertarget{Dijkstra_8h}{}\label{Dijkstra_8h}\index{Dijkstra.h@{Dijkstra.h}}
+{\ttfamily \#include "{}data\+\_\+structures/\+Graph.\+h"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T$>$ }\\bool \mbox{\hyperlink{Dijkstra_8h_a991ec9e40364255a9dbce8197b3e11c0}{driving\+Relax}} (\mbox{\hyperlink{classEdge}{Edge}}$<$ T $>$ \texorpdfstring{$\ast$}{*}edge)
+\item 
+{\footnotesize template$<$class T$>$ }\\bool \mbox{\hyperlink{Dijkstra_8h_aaf63f4a26a75585f9a8dbcf6e4e60c77}{walking\+Relax}} (\mbox{\hyperlink{classEdge}{Edge}}$<$ T $>$ \texorpdfstring{$\ast$}{*}edge)
+\item 
+void \mbox{\hyperlink{Dijkstra_8h_af705f9a4a6cab03cddc73534c8768e6c}{avoid\+Edges}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \texorpdfstring{$\ast$}{*}g, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments)
+\item 
+{\footnotesize template$<$class T$>$ }\\void \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}g, const int \&origin, const std\+::vector$<$ int $>$ \&avoid\+Nodes=\{\}, const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&avoid\+Segments=\{\}, bool is\+Walking=false)
+\item 
+{\footnotesize template$<$class T$>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{get\+Path}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}g, const int \&origin, const int \&dest)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Dijkstra_8h_af705f9a4a6cab03cddc73534c8768e6c}\index{Dijkstra.h@{Dijkstra.h}!avoidEdges@{avoidEdges}}
+\index{avoidEdges@{avoidEdges}!Dijkstra.h@{Dijkstra.h}}
+\doxysubsubsection{\texorpdfstring{avoidEdges()}{avoidEdges()}}
+{\footnotesize\ttfamily \label{Dijkstra_8h_af705f9a4a6cab03cddc73534c8768e6c} 
+void avoid\+Edges (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{Dijkstra_8h_source_l00030}{30}} of file \mbox{\hyperlink{Dijkstra_8h_source}{Dijkstra.\+h}}.
+
+\Hypertarget{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}\index{Dijkstra.h@{Dijkstra.h}!Dijkstra@{Dijkstra}}
+\index{Dijkstra@{Dijkstra}!Dijkstra.h@{Dijkstra.h}}
+\doxysubsubsection{\texorpdfstring{Dijkstra()}{Dijkstra()}}
+{\footnotesize\ttfamily \label{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e} 
+template$<$class T$>$ \\
+void Dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{const int \&}]{origin}{, }\item[{const std\+::vector$<$ int $>$ \&}]{avoid\+Nodes}{ = {\ttfamily \{\}}, }\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{avoid\+Segments}{ = {\ttfamily \{\}}, }\item[{bool}]{is\+Walking}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Dijkstra_8h_source_l00058}{58}} of file \mbox{\hyperlink{Dijkstra_8h_source}{Dijkstra.\+h}}.
+
+\Hypertarget{Dijkstra_8h_a991ec9e40364255a9dbce8197b3e11c0}\index{Dijkstra.h@{Dijkstra.h}!drivingRelax@{drivingRelax}}
+\index{drivingRelax@{drivingRelax}!Dijkstra.h@{Dijkstra.h}}
+\doxysubsubsection{\texorpdfstring{drivingRelax()}{drivingRelax()}}
+{\footnotesize\ttfamily \label{Dijkstra_8h_a991ec9e40364255a9dbce8197b3e11c0} 
+template$<$class T$>$ \\
+bool driving\+Relax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{edge}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Dijkstra_8h_source_l00011}{11}} of file \mbox{\hyperlink{Dijkstra_8h_source}{Dijkstra.\+h}}.
+
+\Hypertarget{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}\index{Dijkstra.h@{Dijkstra.h}!getPath@{getPath}}
+\index{getPath@{getPath}!Dijkstra.h@{Dijkstra.h}}
+\doxysubsubsection{\texorpdfstring{getPath()}{getPath()}}
+{\footnotesize\ttfamily \label{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3} 
+template$<$class T$>$ \\
+std\+::vector$<$ T $>$ get\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{const int \&}]{origin}{, }\item[{const int \&}]{dest}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Dijkstra_8h_source_l00099}{99}} of file \mbox{\hyperlink{Dijkstra_8h_source}{Dijkstra.\+h}}.
+
+\Hypertarget{Dijkstra_8h_aaf63f4a26a75585f9a8dbcf6e4e60c77}\index{Dijkstra.h@{Dijkstra.h}!walkingRelax@{walkingRelax}}
+\index{walkingRelax@{walkingRelax}!Dijkstra.h@{Dijkstra.h}}
+\doxysubsubsection{\texorpdfstring{walkingRelax()}{walkingRelax()}}
+{\footnotesize\ttfamily \label{Dijkstra_8h_aaf63f4a26a75585f9a8dbcf6e4e60c77} 
+template$<$class T$>$ \\
+bool walking\+Relax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{edge}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Dijkstra_8h_source_l00021}{21}} of file \mbox{\hyperlink{Dijkstra_8h_source}{Dijkstra.\+h}}.
+

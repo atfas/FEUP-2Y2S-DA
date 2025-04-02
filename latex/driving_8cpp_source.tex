@@ -1,0 +1,57 @@
+\doxysection{driving.\+cpp}
+\hypertarget{driving_8cpp_source}{}\label{driving_8cpp_source}\index{driving/driving.cpp@{driving/driving.cpp}}
+\mbox{\hyperlink{driving_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{driving_8h}{driving.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00004}00004\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classGraph}{Graph<int>}}\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}};}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00011}\mbox{\hyperlink{driving_8cpp_a641c5940240416ffae83aaccbea17093}{00011}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{driving_8cpp_a641c5940240416ffae83aaccbea17093}{independentDriving}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination)\ \{}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00013}00013\ \ \ \ \ std::vector<int>\ firstPath\ =\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ destination);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00015}00015\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ routePath\ =\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(firstPath);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00017}00017\ \ \ \ \ std::vector<int>\ avoidNodes;}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (!firstPath.empty())}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ firstPath.size()\ -\/\ 1;\ i++)\ \{\ avoidNodes.push\_back(firstPath[i]);\ \}}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00022}00022\ \ \ \ \ std::vector<std::pair<int,\ int>>\ avoidSegments;}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00023}00023\ \ \ \ \ avoidSegments.push\_back(\{source,destination\});}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00025}00025\ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00026}00026\ \ \ \ \ std::vector<int>\ secondPath\ =\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ destination);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ alternativePath\ =\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(secondPath);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{output__handler_8cpp_a0d4e6f40bebbb61cd746fb66ada5a9b8}{drivingIndependentOutput}}(source,destination,routePath,\ alternativePath);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00041}\mbox{\hyperlink{driving_8cpp_a40b628011c8118f5fde82d1a05f00b84}{00041}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{driving_8cpp_a40b628011c8118f5fde82d1a05f00b84}{restrictedDriving}}(\textcolor{keywordtype}{int}\ source,\ \textcolor{keywordtype}{int}\ destination,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments,\ \textcolor{keyword}{const}\ std::string\&\ includeNode)\ \{}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ routePath;}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00044}00044\ \ \ \ \ std::cout\ <<\ includeNode\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (includeNode.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ std::vector<int>\ firstPath\ =\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ destination);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ routePath\ =\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(firstPath);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (stoi(includeNode))\ \{}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ std::vector<int>\ firstPath\ =\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ source,\ stoi(includeNode));}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ routePath1\ =\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(firstPath);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ stoi(includeNode),\ avoidNodes,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ std::vector<int>\ secondPath\ =\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\&\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ stoi(includeNode),\ destination);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPath}{Path}}\ routePath2\ =\ \mbox{\hyperlink{data__handler_8cpp_a503a587f853964bd9e9a78c2a1db992f}{createPath}}(secondPath);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ routePath\ =\ \mbox{\hyperlink{data__handler_8cpp_a8b740256f18e55d3513c9980a2cff19b}{mergePaths}}(routePath1,\ routePath2);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00063}00063\ \ \ \ \ \mbox{\hyperlink{output__handler_8cpp_aeda0328fdd0d071714a24950207e7b6a}{drivingRestrictedOutput}}(source,\ destination,\ routePath);}
+\DoxyCodeLine{\Hypertarget{driving_8cpp_source_l00064}00064\ \}}
+
+\end{DoxyCode}

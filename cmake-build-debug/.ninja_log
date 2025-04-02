@@ -1,0 +1,18 @@
+# ninja log v6
+4	1262	1743090026069613939	CMakeFiles/DA_Project_1.dir/output_handler/output_handler.cpp.o	620673858bda53f2
+1720	2884	1743090155774114719	CMakeFiles/DA_Project_1.dir/input_handler/input_handler.cpp.o	fef5524594eda24f
+1	1898	1743090154054012419	CMakeFiles/DA_Project_1.dir/data_handler/data_handler.cpp.o	921b626fc269699a
+1854	3021	1743089977117881962	CMakeFiles/DA_Project_1.dir/data_handler/csv_file.cpp.o	d0237cae8724d372
+1	56	1743090168370856880	build.ninja	97797f5a28aadea1
+1	1666	1743090154054012419	CMakeFiles/DA_Project_1.dir/main.cpp.o	46b4ff797e99dcc7
+3	1333	1743089975265733688	CMakeFiles/DA_Project_1.dir/Dijkstra.cpp.o	3abc7f093665abb2
+2987	3106	1743090157038189758	DA_Project_1	2761109e66b83cdc
+1	1720	1743090154054012419	CMakeFiles/DA_Project_1.dir/driving/driving.cpp.o	b4d4cfdba563e426
+1666	2987	1743090155718111391	CMakeFiles/DA_Project_1.dir/drivingwalking/drivingwalking.cpp.o	3a65023b397f5f55
+2678	3908	1743088281473424030	CMakeFiles/DA_Project_1.dir/file_input/input_handler.cpp.o	a5c07f0f0bed4e54
+26	1366	1743090500363439227	CMakeFiles/DA_Project_1.dir/driving/driving.cpp.o	b4d4cfdba563e426
+1366	1542	1743090501703498728	DA_Project_1	2761109e66b83cdc
+12	1162	1743090571030531006	CMakeFiles/DA_Project_1.dir/input_handler/input_handler.cpp.o	fef5524594eda24f
+1162	1311	1743090572182580701	DA_Project_1	2761109e66b83cdc
+2	1236	1743090659450291400	CMakeFiles/DA_Project_1.dir/input_handler/input_handler.cpp.o	fef5524594eda24f
+1236	1445	1743090660682343113	DA_Project_1	2761109e66b83cdc

@@ -1,0 +1,119 @@
+\doxysection{Dijkstra.\+h}
+\hypertarget{Dijkstra_8h_source}{}\label{Dijkstra_8h_source}\mbox{\hyperlink{Dijkstra_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ DIJKSTRA\_H}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ DIJKSTRA\_H}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Graph_8h}{data\_structures/Graph.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00009}00009\ \textcolor{comment}{//\ Template\ function\ declarations}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00010}00010\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00011}\mbox{\hyperlink{Dijkstra_8h_a991ec9e40364255a9dbce8197b3e11c0}{00011}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{Dijkstra_8h_a991ec9e40364255a9dbce8197b3e11c0}{drivingRelax}}(\mbox{\hyperlink{classEdge}{Edge<T>}}*\ edge)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{if}\ (edge-\/>\mbox{\hyperlink{classEdge_a40fc1470c5339203defca19b67c2535b}{getOrig}}()-\/>getDist()\ +\ edge-\/>\mbox{\hyperlink{classEdge_ae8ebcbdf43a401d92e861eecc28447f2}{getDriving}}()\ <\ edge-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()-\/>getDist())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ edge-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()-\/>setDist(edge-\/>\mbox{\hyperlink{classEdge_a40fc1470c5339203defca19b67c2535b}{getOrig}}()-\/>getDist()\ +\ edge-\/>\mbox{\hyperlink{classEdge_ae8ebcbdf43a401d92e861eecc28447f2}{getDriving}}());}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ edge-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()-\/>setPath(edge);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00020}00020\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00021}\mbox{\hyperlink{Dijkstra_8h_aaf63f4a26a75585f9a8dbcf6e4e60c77}{00021}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{Dijkstra_8h_aaf63f4a26a75585f9a8dbcf6e4e60c77}{walkingRelax}}(\mbox{\hyperlink{classEdge}{Edge<T>}}*\ edge)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (edge-\/>\mbox{\hyperlink{classEdge_a40fc1470c5339203defca19b67c2535b}{getOrig}}()-\/>getDist()\ +\ edge-\/>\mbox{\hyperlink{classEdge_ad81552257b0296e38e5167de287c3a43}{getWalking}}()\ <\ edge-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()-\/>getDist())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ edge-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()-\/>setDist(edge-\/>\mbox{\hyperlink{classEdge_a40fc1470c5339203defca19b67c2535b}{getOrig}}()-\/>getDist()\ +\ edge-\/>\mbox{\hyperlink{classEdge_ad81552257b0296e38e5167de287c3a43}{getWalking}}());}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ edge-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()-\/>setPath(edge);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00026}00026\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00030}\mbox{\hyperlink{Dijkstra_8h_af705f9a4a6cab03cddc73534c8768e6c}{00030}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Dijkstra_8h_af705f9a4a6cab03cddc73534c8768e6c}{avoidEdges}}(\mbox{\hyperlink{classGraph}{Graph<int>}}*\ g,\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v\ :\ g-\/>\mbox{\hyperlink{classGraph_a41624b03fcb6bd29e4df574a1ec58541}{getVertexSet}}())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ e\ :\ v-\/>getAdj())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>setAvoid(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ pair\ :\ avoidSegments)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<int>}}*\ srcVertex1\ =\ g-\/>\mbox{\hyperlink{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(pair.first);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<int>}}*\ srcVertex2\ =\ g-\/>\mbox{\hyperlink{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(pair.second);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!srcVertex1\ ||\ !srcVertex2)\ \{\ \textcolor{keywordflow}{continue};\ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ edge\ :\ srcVertex1-\/>\mbox{\hyperlink{classVertex_a0010a7d0b7db1bb81dd2ebb1ffae650a}{getAdj}}())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (edge-\/>getDest()-\/>getInfo()\ ==\ pair.second)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edge-\/>setAvoid(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ edge\ :\ srcVertex2-\/>\mbox{\hyperlink{classVertex_a0010a7d0b7db1bb81dd2ebb1ffae650a}{getAdj}}())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (edge-\/>getDest()-\/>getInfo()\ ==\ pair.first)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edge-\/>setAvoid(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00057}00057\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00058}\mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{00058}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Dijkstra_8h_a1423bfc9ac84c2dbd31fc792ddc88d5e}{Dijkstra}}(\mbox{\hyperlink{classGraph}{Graph<T>}}*\ g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ origin,\ \textcolor{keyword}{const}\ std::vector<int>\&\ avoidNodes\ =\ \{\},\ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ avoidSegments\ =\ \{\},\ \textcolor{keywordtype}{bool}\ isWalking\ =\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v\ :\ g-\/>\mbox{\hyperlink{classGraph_a41624b03fcb6bd29e4df574a1ec58541}{getVertexSet}}())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ v-\/>setDist(\mbox{\hyperlink{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}});}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00061}00061\ \ \ \ \ \ \ \ \ v-\/>setPath(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ v-\/>setVisited(std::find(avoidNodes.begin(),\ avoidNodes.end(),\ v-\/>getInfo())\ !=\ avoidNodes.end());}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00065}00065\ \ \ \ \ \mbox{\hyperlink{Dijkstra_8h_af705f9a4a6cab03cddc73534c8768e6c}{avoidEdges}}(g,\ avoidSegments);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00067}00067\ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ g-\/>\mbox{\hyperlink{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(origin);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (!s)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00069}00069\ \ \ \ \ s-\/>setDist(0);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00071}00071\ \ \ \ \ \mbox{\hyperlink{classMutablePriorityQueue}{MutablePriorityQueue<Vertex<T>}}>\ q;}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00072}00072\ \ \ \ \ q.\mbox{\hyperlink{classMutablePriorityQueue_a3cfb95724838a02bfae84c23156b1530}{insert}}(s);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{while}\ (!q.\mbox{\hyperlink{classMutablePriorityQueue_a502df7a510f7d9970f89a0b5900cf581}{empty}}())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ q.\mbox{\hyperlink{classMutablePriorityQueue_af47686310dc556773819d2ba0fdb1255}{extractMin}}();}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v-\/>isVisited())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ e\ :\ v-\/>getAdj())\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e-\/>getAvoid())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ dest\ =\ e-\/>getDest();}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dest-\/>isVisited())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ oldDist\ =\ dest-\/>getDist();}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ relaxed\ =\ isWalking\ ?\ \mbox{\hyperlink{Dijkstra_8h_aaf63f4a26a75585f9a8dbcf6e4e60c77}{walkingRelax}}(e)\ :\ \mbox{\hyperlink{Dijkstra_8h_a991ec9e40364255a9dbce8197b3e11c0}{drivingRelax}}(e);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (relaxed)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldDist\ ==\ \mbox{\hyperlink{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}})\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.\mbox{\hyperlink{classMutablePriorityQueue_a3cfb95724838a02bfae84c23156b1530}{insert}}(dest);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q.\mbox{\hyperlink{classMutablePriorityQueue_a487b80554cf82afc8c1978f156dc1df3}{decreaseKey}}(dest);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00098}00098\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00099}\mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{00099}}\ std::vector<T>\ \mbox{\hyperlink{Dijkstra_8h_a08e9b09cb89ae88564b8db6845238eb3}{getPath}}(\mbox{\hyperlink{classGraph}{Graph<T>}}*\ g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ origin,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ dest)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00100}00100\ \ \ \ \ std::vector<T>\ res;}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{auto}\ v\ =\ g-\/>\mbox{\hyperlink{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(dest);}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00102}00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (!v\ ||\ v-\/>getDist()\ ==\ \mbox{\hyperlink{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}{INF}})\ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{while}\ (v)\ \{}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00105}00105\ \ \ \ \ \ \ \ \ res.push\_back(v-\/>getInfo());}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00106}00106\ \ \ \ \ \ \ \ \ v\ =\ (v-\/>getPath())\ ?\ v-\/>getPath()-\/>getOrig()\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00109}00109\ \ \ \ \ std::reverse(res.begin(),\ res.end());}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (res.empty()\ ||\ res[0]\ !=\ origin)\ std::cout\ <<\ \textcolor{stringliteral}{"{}Origin\ not\ found!!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00112}00112\ \}}
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{Dijkstra_8h_source_l00114}00114\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DIJKSTRA\_H}}
+
+\end{DoxyCode}

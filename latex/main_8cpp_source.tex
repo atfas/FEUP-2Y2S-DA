@@ -1,0 +1,71 @@
+\doxysection{main.\+cpp}
+\hypertarget{main_8cpp_source}{}\label{main_8cpp_source}\mbox{\hyperlink{main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Graph_8h}{data\_structures/Graph.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{data__handler_8h}{data\_handler/data\_handler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{csv__file_8h}{data\_handler/csv\_file.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{input__handler_8h}{input\_handler/input\_handler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{00013}}\ \mbox{\hyperlink{classGraph}{Graph<int>}}\ \mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}00015\ \textcolor{comment}{//\ Display\ initial\ menu\ for\ graph\ and\ data\ input\ selection}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}\mbox{\hyperlink{main_8cpp_adb4b7104b34632fd046d9a534eced233}{00016}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_adb4b7104b34632fd046d9a534eced233}{startMenu}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}00017\ \ \ \ \ std::string\ option,\ graphstr;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ INDIVIDUAL\ ROUTE\ PLANNING\ TOOL"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}00022\ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Select\ Graph\ Type:"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}00025\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ 1.\ CSV\ Graph"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00026}00026\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ 2.\ Simplified\ Graph"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00027}00027\ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00028}00028\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ graph\ type\ (csv/simplified):\ "{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00029}00029\ \ \ \ \ getline(std::cin,\ graphstr);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (graphstr\ ==\ \textcolor{stringliteral}{"{}csv"{}})\ \mbox{\hyperlink{csv__file_8cpp_a7b35a3c74172d20724ae400ce141d712}{createGraph}}(\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ \textcolor{stringliteral}{"{}Locations.csv"{}},\ \textcolor{stringliteral}{"{}Distances.csv"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (graphstr\ ==\ \textcolor{stringliteral}{"{}simplified"{}})\ \mbox{\hyperlink{csv__file_8cpp_a7b35a3c74172d20724ae400ce141d712}{createGraph}}(\mbox{\hyperlink{data__handler_8cpp_a3ff123a23072cf84d8002b79510ca219}{graph}},\ \textcolor{stringliteral}{"{}LocationsSimplified.csv"{}},\ \textcolor{stringliteral}{"{}DistancesSimplified.csv"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00034}00034\ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00035}00035\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00036}00036\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ DATA\ INPUT\ OPTIONS"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00037}00037\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00038}00038\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ 1.\ Read\ data\ from\ input"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00039}00039\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ 2.\ Read\ data\ from\ a\ file"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00040}00040\ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}00041\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ option\ (file/input):\ "{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ \ \ \ \ getline(std::cin,\ option);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ \ \ \ \ option.erase(std::ranges::remove\_if(option,\ ::isspace).begin(),\ option.end());}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ \ \ \ \ std::ranges::transform(option,\ option.begin(),\ ::tolower);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (option\ ==\ \textcolor{stringliteral}{"{}input"{}})\{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__handler_8cpp_a2664904598abae2433dda5423060754f}{readInput}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ \textcolor{stringliteral}{"{}file"{}})\{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__handler_8cpp_ac2d6678dd7e52310131ecbd69a6d6183}{fileInput}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ std::cout<<\textcolor{stringliteral}{"{}Invalid\ input"{}}<<std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00058}00058\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}========================================"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00062}00062\ \textcolor{comment}{//\ Entry\ point\ of\ the\ application,\ initiates\ the\ start\ menu}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00063}\mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00063}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{main_8cpp_adb4b7104b34632fd046d9a534eced233}{startMenu}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00066}00066\ \}}
+
+\end{DoxyCode}
